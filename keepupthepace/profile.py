@@ -22,25 +22,28 @@ class Profile:
         self.gender = None # from the tuple Gender
         self.activityFactor = None # from the tuple Activity Factor
         # infered
-        bBMI = None # classic way to calculate it
-        nBMI = None # new way to calculate it
-        bBMR = None
-        rRMRcal = None
-        rRMRml = None
-        hHBE = None
-        quadraticBodyDensity = None
-        exponentialBodyDensity = None
-        quadraticFatPercentage = None
-        exponentialFatPercentage = None
+        self.bBMI = None # classic way to calculate it
+        self.nBMI = None # new way to calculate it
+        self.bBMR = None
+        self.rRMRcal = None
+        self.rRMRml = None
+        self.hHBE = None
+        self.quadraticBodyDensity = None
+        self.exponentialBodyDensity = None
+        self.quadraticFatPercentage = None
+        self.exponentialFatPercentage = None
 
-    def computeWeigth():
+
+    def computeWeigth(self, weightIntegerPart, weightDecimalPart):
         
+        return self.weight
     
-    def computeBMI():
-        return bBMI, nBMI
+    def computeBMI(self):
+        return self.bBMI, self.nBMI
 
-    def computeRMR():
-        return bBMR
+
+    def computeRMR(self):
+        return self.bBMR
 
 
 
