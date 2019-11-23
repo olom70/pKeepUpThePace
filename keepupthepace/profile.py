@@ -1,9 +1,3 @@
-
-ActivityFactor = ('sedentary', 'lightlyActive', 'active', 'moderatelyActive', 'vigorous', 'vigorouslyActive')
-RmrDates = ('a1918', 'a1984', 'a1990')
-MetricChoice = ('iso', 'imperial')
-Gender = ('Female', 'Male')
-
 class Profile:
     def __init__(self, profileName='a profile'):
         self.profileName = profileName
@@ -28,7 +22,26 @@ class Profile:
         self.gender = None # from the tuple Gender
         self.activityFactor = None # from the tuple Activity Factor
         # infered
+        bBMI = None # classic way to calculate it
+        nBMI = None # new way to calculate it
+        bBMR = None
+        rRMRcal = None
+        rRMRml = None
+        hHBE = None
+        quadraticBodyDensity = None
+        exponentialBodyDensity = None
+        quadraticFatPercentage = None
+        exponentialFatPercentage = None
+
+    def computeWeigth():
         
+    
+    def computeBMI():
+        return bBMI, nBMI
+
+    def computeRMR():
+        return bBMR
+
 
 
 

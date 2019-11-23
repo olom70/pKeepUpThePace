@@ -1,3 +1,4 @@
 [
-  "tests/test_profile.py::test_instance_creation"
+  "tests/test_profile.py::test_instance_creation",
+  "tests/test_profile.py::test_values_of_profile"
 ]
