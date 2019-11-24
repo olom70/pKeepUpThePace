@@ -1,4 +1,7 @@
-from switch_case import *
+import os
+import sys
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+import keepupthepace.enumandconst as enumandconst
 
 class Profile:
     '''
@@ -53,6 +56,14 @@ class Profile:
         else:
             raise("weight has to be initialized first")
     
+    def computeBMIISO(self):
+        self.bBMI = 3
+        self.nBMI = 3
+
+    def computeBMIImperial(self):
+        self.bBMI = 3
+        self.nBMI = 3
+
     def computeBMI(self):
         '''
             Compute BMI from weight and height of a person
@@ -71,9 +82,12 @@ class Profile:
         if (self.weight is not None
                 and self.heightIntegerPart is not None
                 and self.heightDecimalPart is not None
-                and self.metricChoice is not None):
-            # yet to code
-            gapholder = 3.14
+                and self.metricChoice is not None
+                and self.metricChoice in enumandconst.MetricChoice):
+            if (self.metricChoice == enumandconst.MetricChoice.ISO):
+                self.computeBMIISO
+            if (self.metricChoice == enumandconst.MetricChoice.IMPERIAL):
+                self.computeBMIImperial
         else:
             raise("Profile has to be fully initialized with weight, height and metric choice (iso, imperial)")
 
