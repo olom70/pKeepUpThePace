@@ -2,6 +2,7 @@ import os
 import sys
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 import keepupthepace.enumandconst as enumandconst
+import math
 
 class Profile:
     '''
@@ -47,20 +48,31 @@ class Profile:
 
     def computeWeigth(self):
         '''
-            Add the decimal part of the weight to the integer part to obtain une number
+            Add the decimal part of the weight to the integer part to obtain one number
         '''
         if (self.weightDecimalPart is not None
-                and self.weightIntegerPart is not None
-                and self.weightDecimalPart != 0):
+                and self.weightIntegerPart is not None):
             self.weight = self.weightIntegerPart + (self.weightDecimalPart / 100)
         else:
-            raise("weight has to be initialized first")
+            raise ValueError("weight has to be initialized first")
     
-    def computeBMIISO(self):
-        self.bBMI = 3
-        self.nBMI = 3
+    def __computeBMIISO(self):
+        '''
+            Compute the BMI from ISO metrics
+            This is a private function called by "ComputeBMI"
+            There are 2 formulas to compute the BMI :
+                see the main function "Compute BMI"
+        '''
+        self.bBMI = 10000 * (self.weight / math.pow((self.heightIntegerPart*100+self.heightDecimalPart),2))  
+        self.nBMI = 100000 * (self.weight*1.3 / math.pow((self.heightIntegerPart*100+self.heightDecimalPart),2.5))
 
-    def computeBMIImperial(self):
+    def __computeBMIImperial(self):
+        '''
+            Compute the BMI from imperial metrics
+            This is a private function called by "ComputeBMI"
+            There are 2 formulas to compute the BMI :
+                see the main function "Compute BMI"
+        '''
         self.bBMI = 3
         self.nBMI = 3
 
@@ -78,18 +90,22 @@ class Profile:
                 or
                 imperial : BMI = 5734*weight(lb)/height(in)2.5
         '''
-        self.computeWeigth
+        try:
+            self.computeWeigth()
+        except:
+            raise
+        
         if (self.weight is not None
                 and self.heightIntegerPart is not None
                 and self.heightDecimalPart is not None
                 and self.metricChoice is not None
                 and self.metricChoice in enumandconst.MetricChoice):
             if (self.metricChoice == enumandconst.MetricChoice.ISO):
-                self.computeBMIISO
+                self.__computeBMIISO()
             if (self.metricChoice == enumandconst.MetricChoice.IMPERIAL):
-                self.computeBMIImperial
+                self.__computeBMIImperial()
         else:
-            raise("Profile has to be fully initialized with weight, height and metric choice (iso, imperial)")
+            raise ValueError("Profile has to be fully initialized with weight, height and metric choice (iso, imperial)")
 
 
         return self.bBMI, self.nBMI    
@@ -98,6 +114,17 @@ class Profile:
         return self.bBMR
 
 
-
+if __name__ == "__main__":
+    myProfile = Profile('clode')
+    myProfile.age = 35
+    myProfile.gender = enumandconst.Gender.FEMALE
+    myProfile.weightIntegerPart = 60
+    myProfile.weightDecimalPart = 0
+    myProfile.heightIntegerPart = 1
+    myProfile.heightDecimalPart = 68
+    myProfile.metricChoice = enumandconst.MetricChoice.ISO
+    myProfile.computeBMI()
+    print(myProfile.nBMI)
+    print(myProfile.bBMI)
 
  
