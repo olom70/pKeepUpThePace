@@ -73,8 +73,31 @@ class Profile:
             There are 2 formulas to compute the BMI :
                 see the main function "Compute BMI"
         '''
-        self.bBMI = 3
-        self.nBMI = 3
+        self.bBMI = 10000*(self.weight / math.pow((self.heightIntegerPart*12+self.heightDecimalPart),2))*703
+        self.nBMI = 5734*self.weight / math.pow(self.heightIntegerPart*12+self.heightDecimalPart,2.5)
+
+
+    def displaynBMI(self):
+        '''
+            Trunc the new BMI to the nearest integer
+        '''
+        if self.nBMI is not None:
+            truncatednBMI = math.trunc(self.nBMI)
+            return truncatednBMI
+        else:
+            raise ValueError("In order to display nBMI, it needs initialization first")
+
+    
+    def displaybBMI(self):
+        '''
+            Trunc the classic BMI to the nearest integer
+        '''
+        if self.bBMI is not None:
+            truncatedbBMI = math.trunc(self.bBMI)
+            return truncatedbBMI
+        else:
+            raise ValueError("In order to display bBMI, it needs initialization first")
+
 
     def computeBMI(self):
         '''
@@ -108,9 +131,14 @@ class Profile:
             raise ValueError("Profile has to be fully initialized with weight, height and metric choice (iso, imperial)")
 
 
-        return self.bBMI, self.nBMI    
+        return self.bBMI, self.nBMI
 
-    def computeRMR(self):
+    def computeRMR(self, version):
+        '''
+            compute the RMR.
+             input :
+             version : formula to use taken from the enumeration "RmrDates"
+        '''
         return self.bBMR
 
 
@@ -126,5 +154,6 @@ if __name__ == "__main__":
     myProfile.computeBMI()
     print(myProfile.nBMI)
     print(myProfile.bBMI)
+    print(myProfile.displaybBMI())
 
  
