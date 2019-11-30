@@ -37,9 +37,9 @@ class Profile:
         self.bBMI = None # classic way to calculate it
         self.nBMI = None # new way to calculate it
         self.bBMR = None
-        self.rRMRcal = None
-        self.rRMRml = None
-        self.hHBE = None
+        self.rRMRcal = {}
+        self.rRMRml = {}
+        self.hHBE = {}
         self.quadraticBodyDensity = None
         self.exponentialBodyDensity = None
         self.quadraticFatPercentage = None
@@ -69,9 +69,9 @@ class Profile:
     def __computeBMIImperial(self):
         '''
             Compute the BMI from imperial metrics
-            This is a private function called by "ComputeBMI"
-            There are 2 formulas to compute the BMI :
-                see the main function "Compute BMI"
+             ** DO NOT USE DIRECTLY **
+            ** use computeBMI instead **
+
         '''
         self.bBMI = 10000*(self.weight / math.pow((self.heightIntegerPart*12+self.heightDecimalPart),2))*703
         self.nBMI = 5734*self.weight / math.pow(self.heightIntegerPart*12+self.heightDecimalPart,2.5)
@@ -133,13 +133,184 @@ class Profile:
 
         return self.bBMI, self.nBMI
 
-    def computeRMR(self, version):
+    def __computeRMRml(self, rmrcal):
+        '''
+            To convert kilocalories per day obtained from the Harris Benedict equation2 to ml.kg-1.min-1
+            the following formula is used.
+            kcal.day-1/1440 = kcal.min-1; kcal.min-1/5 = L.min-1; L.min-1/(weight kg)x1000 = ml.kg-1.min-1
+             ** DO NOT USE DIRECTLY **
+            ** use computeRMR instead **
+
+        '''
+        rmrml = (rmrcal / 1440 / 5 / self.weight)*1000
+        return rmrml
+
+
+    def __computeISORMRFemale(self):
+        '''
+            compute RMR for a female using ISO metrics
+            populate the dictionary "RMRcal" and the float "RMRml"
+            ** DO NOT USE DIRECTLY **
+            ** use computeRMR instead **
+        '''
+        self.rRMRcal.clear
+        self.rRMRml.clear
+        # formula from 1918
+        rmrtemp = 655.0955 + (9.5634*self.weight) + (1.8496*(self.heightIntegerPart*100+self.heightDecimalPart)) - (4.6756*self.age)
+        self.rRMRcal.update({enumandconst.RmrDates.A1918 : rmrtemp})
+        self.rRMRml.update({enumandconst.RmrDates.A1918 : self.__computeRMRml(self.rRMRcal.get(enumandconst.RmrDates.A1918))})
+        # formula from 1984
+        rmrtemp = 447.593 + (9.247*self.weight) + (3.098*(self.heightIntegerPart*100+self.heightDecimalPart)) - (4.330*self.age)
+        self.rRMRcal.update({enumandconst.RmrDates.A1984 : rmrtemp})
+        self.rRMRml.update({enumandconst.RmrDates.A1984 : self.__computeRMRml(self.rRMRcal.get(enumandconst.RmrDates.A1984))})
+        # formula from 1990
+        rmrtemp = -161 + (10*self.weight) + (6.25*(self.heightIntegerPart*100+self.heightDecimalPart)) - (5*self.age)
+        self.rRMRcal.update({enumandconst.RmrDates.A1990 : rmrtemp})
+        self.rRMRml.update({enumandconst.RmrDates.A1990 : self.__computeRMRml(self.rRMRcal.get(enumandconst.RmrDates.A1990))})
+
+
+    def __computeISORMRMale(self):
+        '''
+            compute RMR for a male using ISO metrics
+            populate the dictionary "RMRcal" and the float "RMRml"
+            ** DO NOT USE DIRECTLY **
+            ** use computeRMR instead **
+        '''
+        self.rRMRcal.clear
+        self.rRMRml.clear
+        # formula from 1918
+        rmrtemp = 66.4730 + (13.7516*self.weight) + (5.0033*(self.heightIntegerPart*100+self.heightDecimalPart)) - (6.7550*self.age)
+        self.rRMRcal.update({enumandconst.RmrDates.A1918 : rmrtemp})
+        self.rRMRml.update({enumandconst.RmrDates.A1918 : self.__computeRMRml(self.rRMRcal.get(enumandconst.RmrDates.A1918))})
+        # formula from 1984
+        rmrtemp = 88.362 + (13.397*self.weight) + (4.799*(self.heightIntegerPart*100+self.heightDecimalPart)) - (5.677*self.age)
+        self.rRMRcal.update({enumandconst.RmrDates.A1984 : rmrtemp})
+        self.rRMRml.update({enumandconst.RmrDates.A1984 : self.__computeRMRml(self.rRMRcal.get(enumandconst.RmrDates.A1984))})
+        # formula from 1990
+        rmrtemp = 5 + (10*self.weight) + (6.25*(self.heightIntegerPart*100+self.heightDecimalPart)) - (5*self.age)
+        self.rRMRcal.update({enumandconst.RmrDates.A1990 : rmrtemp})
+        self.rRMRml.update({enumandconst.RmrDates.A1990 : self.__computeRMRml(self.rRMRcal.get(enumandconst.RmrDates.A1990))})
+
+    def __computeImperialRMRFemale(self):
+        '''
+            compute RMR for a female using Imperial metrics
+            populate the dictionary "RMRcal" and the float "RMRml"
+            ** DO NOT USE DIRECTLY **
+            ** use computeRMR instead **
+        '''
+        self.rRMRcal.clear
+        self.rRMRml.clear
+        # formula from 1918
+        rmrtemp = 655.0955 + (9.5634*(self.weight*0.453592)) + (1.8496*((self.heightIntegerPart*12+self.heightDecimalPart)*0.0508)) -(4.6756*self.age)
+        self.rRMRcal.update({enumandconst.RmrDates.A1918 : rmrtemp})
+        self.rRMRml.update({enumandconst.RmrDates.A1918 : self.__computeRMRml(self.rRMRcal.get(enumandconst.RmrDates.A1918))})
+        # formula from 1984
+        rmrtemp = 447.593 + (9.247*(self.weight*0.453592)) + (3.098*((self.heightIntegerPart*12+self.heightDecimalPart)*0.0508)) - (4.330*self.age)
+        self.rRMRcal.update({enumandconst.RmrDates.A1984 : rmrtemp})
+        self.rRMRml.update({enumandconst.RmrDates.A1984 : self.__computeRMRml(self.rRMRcal.get(enumandconst.RmrDates.A1984))})
+        # formula from 1990
+        rmrtemp = -161 + (10*(self.weight*0.453592)) + (6.25*((self.heightIntegerPart*12+self.heightDecimalPart)*0.0508)) - (5*self.age)
+        self.rRMRcal.update({enumandconst.RmrDates.A1990 : rmrtemp})
+        self.rRMRml.update({enumandconst.RmrDates.A1990 : self.__computeRMRml(self.rRMRcal.get(enumandconst.RmrDates.A1990))})
+
+    def __computeImperialRMRMale(self):
+        '''
+            compute RMR for a male using Imperial metrics
+            populate the dictionary "RMRcal" and the float "RMRml"
+            ** DO NOT USE DIRECTLY **
+            ** use computeRMR instead **
+        '''
+        self.rRMRcal.clear
+        self.rRMRml.clear
+        # formula from 1918
+        rmrtemp = 66.4730 + (13.7516*(self.weight*0.453592)) + (5.033*((self.heightIntegerPart*12+self.heightDecimalPart)*0.0508)) - (6.7550*self.age)
+        self.rRMRcal.update({enumandconst.RmrDates.A1918 : rmrtemp})
+        self.rRMRml.update({enumandconst.RmrDates.A1918 : self.__computeRMRml(self.rRMRcal.get(enumandconst.RmrDates.A1918))})
+        # formula from 1984
+        rmrtemp = 88.362 + (13.397*(self.weight*0.453592)) + (4.799*((self.heightIntegerPart*12+self.heightDecimalPart)*0.0508)) - (5.677*self.age)
+        self.rRMRcal.update({enumandconst.RmrDates.A1984 : rmrtemp})
+        self.rRMRml.update({enumandconst.RmrDates.A1984 : self.__computeRMRml(self.rRMRcal.get(enumandconst.RmrDates.A1984))})
+        # formula from 1990
+        rmrtemp = 5 + (10*(self.weight*0.453592)) + (6.25*((self.heightIntegerPart*12+self.heightDecimalPart)*0.0508)) - (5*self.age)
+        self.rRMRcal.update({enumandconst.RmrDates.A1990 : rmrtemp})
+        self.rRMRml.update({enumandconst.RmrDates.A1990 : self.__computeRMRml(self.rRMRcal.get(enumandconst.RmrDates.A1990))})
+
+
+    def computeRMR(self):
         '''
             compute the RMR.
-             input :
-             version : formula to use taken from the enumeration "RmrDates"
         '''
+        try:
+            self.computeWeigth()
+        except:
+            raise
+        
+        if (self.weight is not None
+                and self.heightDecimalPart is not None
+                and self.heightIntegerPart is not None
+                and self.age is not None
+                and self.metricChoice in enumandconst.MetricChoice
+                and self.gender in enumandconst.Gender):
+            
+            if self.metricChoice == enumandconst.MetricChoice.ISO:
+                if self.gender == enumandconst.Gender.FEMALE:
+                    self.__computeISORMRFemale()
+                elif self.gender == enumandconst.Gender.MALE:
+                    self.__computeISORMRMale()
+                else: 
+                    raise ValueError("unexpected Gender. A new Gender must have been added and is yet to handle")
+            elif self.metricChoice == enumandconst.MetricChoice.IMPERIAL:
+                if self.gender == enumandconst.Gender.FEMALE:
+                    self.__computeImperialRMRFemale
+                elif self.gender == enumandconst.Gender.MALE:
+                    self.__computeImperialRMRMale
+                else:
+                    raise ValueError("unexpected Gender. A new Gender must have been added and is yet to handle")
+            else:
+                raise ValueError("unexpected Metric Choice. A new Metric Choice must have been added and is yet to handle")
+        else:
+            raise ValueError("Profile has to be fully initialized with height, age, metric choice, gender")
+
         return self.bBMR
+
+    def computeHBE(self):
+        '''
+            compute the HBE that depends of the level of activity of a typical week
+        '''
+        if (len(self.rRMRcal) != 0
+            and self.activityFactor in enumandconst.ActivityFactor):
+            
+            self.hHBE.clear
+            if self.activityFactor == enumandconst.ActivityFactor.SEDENTARY:
+                self.hHBE.update({enumandconst.RmrDates.A1918 : self.rRMRcal.get(enumandconst.RmrDates.A1918) * 1.4})
+                self.hHBE.update({enumandconst.RmrDates.A1984 : self.rRMRcal.get(enumandconst.RmrDates.A1984) * 1.4})
+                self.hHBE.update({enumandconst.RmrDates.A1990 : self.rRMRcal.get(enumandconst.RmrDates.A1990) * 1.4})
+            elif self.activityFactor == enumandconst.ActivityFactor.LIGHTLYACTIVE:
+                self.hHBE.update({enumandconst.RmrDates.A1918 : self.rRMRcal.get(enumandconst.RmrDates.A1918) * 1.6})
+                self.hHBE.update({enumandconst.RmrDates.A1984 : self.rRMRcal.get(enumandconst.RmrDates.A1984) * 1.6})
+                self.hHBE.update({enumandconst.RmrDates.A1990 : self.rRMRcal.get(enumandconst.RmrDates.A1990) * 1.6})
+            elif self.activityFactor == enumandconst.ActivityFactor.MODERATELYACTIVE:
+                self.hHBE.update({enumandconst.RmrDates.A1918 : self.rRMRcal.get(enumandconst.RmrDates.A1918) * 1.7})
+                self.hHBE.update({enumandconst.RmrDates.A1984 : self.rRMRcal.get(enumandconst.RmrDates.A1984) * 1.7})
+                self.hHBE.update({enumandconst.RmrDates.A1990 : self.rRMRcal.get(enumandconst.RmrDates.A1990) * 1.7})
+            elif self.activityFactor == enumandconst.ActivityFactor.ACTIVE:
+                self.hHBE.update({enumandconst.RmrDates.A1918 : self.rRMRcal.get(enumandconst.RmrDates.A1918) * 1.9})
+                self.hHBE.update({enumandconst.RmrDates.A1984 : self.rRMRcal.get(enumandconst.RmrDates.A1984) * 1.9})
+                self.hHBE.update({enumandconst.RmrDates.A1990 : self.rRMRcal.get(enumandconst.RmrDates.A1990) * 1.9})
+            elif self.activityFactor == enumandconst.ActivityFactor.VIGOROUS:
+                self.hHBE.update({enumandconst.RmrDates.A1918 : self.rRMRcal.get(enumandconst.RmrDates.A1918) * 2.0})
+                self.hHBE.update({enumandconst.RmrDates.A1984 : self.rRMRcal.get(enumandconst.RmrDates.A1984) * 2.0})
+                self.hHBE.update({enumandconst.RmrDates.A1990 : self.rRMRcal.get(enumandconst.RmrDates.A1990) * 2.0})
+            elif self.activityFactor == enumandconst.ActivityFactor.VIGOROUSLYACTIVE:
+                self.hHBE.update({enumandconst.RmrDates.A1918 : self.rRMRcal.get(enumandconst.RmrDates.A1918) * 2.4})
+                self.hHBE.update({enumandconst.RmrDates.A1984 : self.rRMRcal.get(enumandconst.RmrDates.A1984) * 2.4})
+                self.hHBE.update({enumandconst.RmrDates.A1990 : self.rRMRcal.get(enumandconst.RmrDates.A1990) * 2.4})
+            else:
+                raise ValueError("Unexpected activity factor. A new value have been added and is yet to handle")
+        else:
+            raise ValueError("The computation of HBR needs these values initialised : Activity Factor and RMR")
+
+
 
 
 if __name__ == "__main__":
@@ -155,5 +326,12 @@ if __name__ == "__main__":
     print(myProfile.nBMI)
     print(myProfile.bBMI)
     print(myProfile.displaybBMI())
+    myProfile.computeRMR()
+    print(myProfile.rRMRcal)
+    print(myProfile.rRMRml)
+    myProfile.activityFactor = enumandconst.ActivityFactor.SEDENTARY
+    myProfile.computeHBE()
+    print(myProfile.hHBE)
+
 
  
