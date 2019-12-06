@@ -310,8 +310,72 @@ class Profile:
         else:
             raise ValueError("The computation of HBR needs these values initialised : Activity Factor and RMR")
 
+    
+    def computeFAT(self):
+        '''
+            compute fat percentage of body
+            using 2 formulas :
+              - exponential formula :	BD = exp(a − b ⋅ Sk − c ⋅ age)
+              - quadratic formula :	BD = a − b ⋅ S + c ⋅ S² − d ⋅ age
+            see more details in the comment of the function
+        '''
 
-
+        # Quadratic formula :	BD = a − b ⋅ S + c ⋅ S² − d ⋅ age
+        #     man
+        #     BD :	Body density
+        #     a :	1.10938
+        #     b :	0.0008267
+        #     S :	"sum of skinfolds in mm for chest, abdomen and thigh"
+        #     c :	0.0000016
+        #     d :	0.0002574
+        #     age :	year
+        #     woman
+        #     BD :	Body density
+        #     a :	1.0994921
+        #     b :	0.0009929
+        #     S :	"sum of skinfolds in mm
+        #     for triceps, thigh, and suprailium"
+        #     c :	0.0000023
+        #     d :	0.0001392
+        #     age :	year
+        # exponential formula :	BD = exp(a − b ⋅ Sk − c ⋅ age)
+        #   man
+        #   BD :	body density
+        #   a :	0.109648
+        #   b :	0.0021745
+        #   k :	0.747
+        #   c :	0.0002516
+        #   S :	"sum of skinfolds in mm for chest, abdomen and thigh"
+        #   woman
+        #   BD :	body density
+        #   a :	0.120936
+        #   b :	0.0084087
+        #   k :	0.532
+        #   c :	0.0001178
+        #   S :	"sum of skinfolds in mm for triceps, thigh, and suprailium"
+        #   To find out the approximate body fat percentage, the body density score must be plugged into another formula. The Siri equation, which was designed to estimate body fat percent from body density, is:
+        # [(4.95/body density) - 4.5] x 100 = percent body fat
+        if (self.gender in enumandconst.Gender):
+            if (self.gender == enumandconst.Gender.FEMALE):
+                if (self.triceps is not None
+                    and self.suprailium is not None
+                    and self.thigh is not None
+                    and self.age is not None):
+                    pass
+                else:
+                    raise ValueError("computeFAT : triceps, suprailium, thigh or age is yet to initialise ")
+            elif (self.gender == enumandconst.Gender.MALE):
+                if (self.triceps is not None
+                    and self.abdomen is not None
+                    and self.age is not None
+                    and self.thigh is not none):
+                    pass
+                else:
+                    raise ValueError("computeFAT, triceps, abdomen, age, thigh is yet to initialise ")
+            else:
+                raise ValueError("computeFat : a Gender value has been added and is yet to handle")
+        else:
+            raise ValueError("computeFAT : Initialise Gender first")        
 
 if __name__ == "__main__":
     myProfile = Profile('clode')

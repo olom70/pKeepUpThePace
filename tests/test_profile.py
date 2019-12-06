@@ -30,4 +30,5 @@ def test_values_of_profile():
     myProfile.activityFactor = enumandconst.ActivityFactor.SEDENTARY
     myProfile.computeHBE()
     assert myProfile.hHBE.get(enumandconst.RmrDates.A1990) == 1839.6
+
     

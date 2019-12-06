@@ -1,1 +1,4 @@
-{}
+{
+  "tests/test_profile.py::test_instance_creation": true,
+  "tests/test_profile.py::test_values_of_profile": true
+}
