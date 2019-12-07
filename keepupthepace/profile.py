@@ -275,7 +275,7 @@ class Profile:
 
     def computeHBE(self):
         '''
-            compute the HBE that depends of the level of activity of a typical week
+            compute the HBE that depends of the level of activity for a typical week
         '''
         if (len(self.rRMRcal) != 0
             and self.activityFactor in enumandconst.ActivityFactor):
@@ -310,6 +310,13 @@ class Profile:
         else:
             raise ValueError("The computation of HBR needs these values initialised : Activity Factor and RMR")
 
+    def __computeFatPercentage(self):
+        '''
+            compute Fat Percentage from quadratic & exponential fat formula
+            *** DO NOT CALL DIRECTLY *** use computeFat
+        '''
+        self.quadraticFatPercentage = ((4.95/self.quadraticBodyDensity)-4.5)*100
+        self.exponentialFatPercentage = ((4.95/self.exponentialBodyDensity)-4.5)*100
     
     def computeFAT(self):
         '''
@@ -361,21 +368,41 @@ class Profile:
                     and self.suprailium is not None
                     and self.thigh is not None
                     and self.age is not None):
-                    pass
+                    self.quadraticBodyDensity =  \
+                        (1.0994921 - 0.0009929
+                        * (self.triceps+self.suprailium+self.thigh)
+                        + 0.0000023
+                        * math.pow((self.triceps+self.suprailium+self.thigh),2)
+                        -0.0001392*self.age)
+                    self.exponentialBodyDensity = \
+                         math.exp(0.120936-0.0084087
+                         *math.pow((self.triceps+self.suprailium+self.thigh),0.532)
+                         -0.0001178*self.age)
+                    self.__computeFatPercentage()
                 else:
                     raise ValueError("computeFAT : triceps, suprailium, thigh or age is yet to initialise ")
             elif (self.gender == enumandconst.Gender.MALE):
                 if (self.triceps is not None
                     and self.abdomen is not None
                     and self.age is not None
-                    and self.thigh is not none):
-                    pass
+                    and self.thigh is not None):
+                    self.quadraticBodyDensity =  \
+                        (1.10938 - 0.0008267
+                        * (self.triceps+self.abdomen+self.thigh)
+                        + 0.0000016
+                        * math.pow((self.triceps+self.abdomen+self.thigh),2)
+                        - 0.0002574*self.age)
+                    self.exponentialBodyDensity = \
+                        math.exp(0.109648-0.0021745
+                        * math.pow((self.triceps+self.abdomen+self.thigh),0.747)
+                        - 0.0002516*self.age)
+                    self.__computeFatPercentage()
                 else:
                     raise ValueError("computeFAT, triceps, abdomen, age, thigh is yet to initialise ")
             else:
                 raise ValueError("computeFat : a Gender value has been added and is yet to handle")
         else:
-            raise ValueError("computeFAT : Initialise Gender first")        
+            raise ValueError("computeFAT : Initialise Gender first")
 
 if __name__ == "__main__":
     myProfile = Profile('clode')
@@ -396,6 +423,11 @@ if __name__ == "__main__":
     myProfile.activityFactor = enumandconst.ActivityFactor.SEDENTARY
     myProfile.computeHBE()
     print(myProfile.hHBE)
+    myProfile.triceps = 25
+    myProfile.thigh = 80
+    myProfile.suprailium = 2
+    myProfile.computeFAT()
+    print(myProfile.quadraticBodyDensity)
+    print(myProfile.exponentialBodyDensity)
+    print(myProfile.quadraticFatPercentage)
 
-
- 
