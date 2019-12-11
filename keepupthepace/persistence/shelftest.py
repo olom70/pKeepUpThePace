@@ -26,9 +26,19 @@ scondC.addText("deux")
 shelf = shelve.open("profileshelf.db")
 try:
     for myClassObject in MyClass._registry:
-        pass
+        print(myClassObject.id)
+        print(myClassObject.text)
+        id=str(myClassObject.id)
+        shelf[id] = myClassObject
 finally:
     shelf.close
 
+shelf = shelve.open("profileshelf.db")
+try:
+    firstC = None
+    firstC = shelf['1']
+    print(firstC.text)
+finally:
+    shelf.close
 
 
