@@ -40,5 +40,3 @@ try:
     print(firstC.text)
 finally:
     shelf.close
-
-
