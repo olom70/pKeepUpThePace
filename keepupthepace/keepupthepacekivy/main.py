@@ -42,8 +42,8 @@ class Lang(Observable):
         self.ugettext = locales.gettext
 
         # update all the kv rules attached to this text
-        for func, largs, kwargs in self.observers:
-            func(largs, None, None)
+        for func, args, kwargs in self.observers:
+            func(args, None, None)
 
 
 tr = Lang("en")
@@ -55,14 +55,13 @@ class Front1(PageLayout):
 
 class KeepUpThepaceApp(App):
 
-    lang = kivy.properties.StringProperty('en')
-
-    def build(self):
-        return Front1()
+    lang = kivy.properties.StringProperty(tr.lang)
 
     def on_lang(self, instance, lang):
         tr.switch_lang(lang)
 
+    def build(self):
+        return Front1()
 
 if __name__ == "__main__":
     KeepUpThepaceApp().run()
