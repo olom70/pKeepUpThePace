@@ -1,10 +1,40 @@
+#:kivy 1.11.1
+#:import tr __main__.tr
+
 <Front1>:
     PageLayout:
         BoxLayout:
             orientation: 'vertical'
+            Label:
+                text: tr._('BMI')
+                size: self.texture_size
+            GridLayout:
+                cols: 5
+                Label:
+                    text: tr._('Height :')
+                TextInput: 
+                    multiline: False
+                Label:
+                    text: tr._('Meter')
+                TextInput:
+                    multiline: False
+                Label:
+                    text: tr._('Centimeter')
+                Label:
+                    text: tr._('Weight :')
+                TextInput: 
+                    multiline: False
+                Label:
+                    text: tr._('kilogram')
+                TextInput:
+                    multiline: False
+                Label:
+                    text: tr._('gram')
+        BoxLayout:
+            orientation: 'vertical'
             Button:
                 size_hint: (1,0.5)
-                text: 'test'
-                on_press: print('test')
+                text: tr._('test3')
+                on_press: print(tr._('test'))
             Button:
-                text: 'test2'
+                text: tr._('test4')
