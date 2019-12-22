@@ -2,66 +2,45 @@ import kivy
 kivy.require('1.11.1')
 from kivy.app import App
 from kivy.uix.pagelayout import PageLayout
-import kivy.properties
-from kivy.lang import Observable
-from os.path import join, dirname
-import gettext
+import lang
+
+import os
+import sys
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
+import keepupthepace.profilem.profile as profile
+import keepupthepace.profilem.enumandconst as enumandconst
 
 
-class Lang(Observable):
-    observers = []
-    lang = None
-
-    def __init__(self, defaultlang):
-        super(Lang, self).__init__()
-        self.ugettext = None
-        self.lang = defaultlang
-        self.switch_lang(self.lang)
-
-    def _(self, text):
-        return self.ugettext(text)
-
-    def fbind(self, name, func, args, **kwargs):
-        if name == "_":
-            self.observers.append((func, args, kwargs))
-        else:
-            return super(Lang, self).fbind(name, func, *args, **kwargs)
-
-    def funbind(self, name, func, args, **kwargs):
-        if name == "_":
-            key = (func, args, kwargs)
-            if key in self.observers:
-                self.observers.remove(key)
-        else:
-            return super(Lang, self).funbind(name, func, *args, **kwargs)
-
-    def switch_lang(self, lang):
-        # get the right locales directory, and instanciate a gettext
-        locale_dir = join(dirname(__file__), 'data', 'locales')
-        locales = gettext.translation('keepupthepaceapp', locale_dir, languages=[lang])
-        self.ugettext = locales.gettext
-
-        # update all the kv rules attached to this text
-        for func, args, kwargs in self.observers:
-            func(args, None, None)
-
-
-tr = Lang("en")
-
+tr = lang.Lang("en")
 
 class Front1(PageLayout):
-    pass
-
+    pass    
 
 class KeepUpThepaceApp(App):
-
+    '''
+        main Class to launch the App
+    '''
     lang = kivy.properties.StringProperty(tr.lang)
 
     def on_lang(self, instance, lang):
-        tr.switch_lang(lang)
+        lang.tr.switch_lang(lang)
 
     def build(self):
         return Front1()
+    
 
 if __name__ == "__main__":
+
+    # initialize a profile to test the app
+    myProfile=profile.Profile()
+    myProfile.age = 35
+    myProfile.gender = enumandconst.Gender.FEMALE
+    myProfile.weightIntegerPart = 60
+    myProfile.weightDecimalPart = 0
+    myProfile.heightIntegerPart = 1
+    myProfile.heightDecimalPart = 68
+    myProfile.metricChoice = enumandconst.MetricChoice.ISO
+    myProfile.computeBMI()
+
+    # launch the app
     KeepUpThepaceApp().run()

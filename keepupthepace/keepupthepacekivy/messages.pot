@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-21 00:29+0100\n"
+"POT-Creation-Date: 2019-12-22 16:38+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,34 +25,38 @@ msgstr ""
 msgid "Height :"
 msgstr ""
 
-#: keepupthepace.kv:18
+#: keepupthepace.kv:21
 msgid "Meter"
 msgstr ""
 
-#: keepupthepace.kv:22
+#: keepupthepace.kv:27
 msgid "Centimeter"
 msgstr ""
 
-#: keepupthepace.kv:24
+#: keepupthepace.kv:29
 msgid "Weight :"
 msgstr ""
 
-#: keepupthepace.kv:28
+#: keepupthepace.kv:35
 msgid "kilogram"
 msgstr ""
 
-#: keepupthepace.kv:32
+#: keepupthepace.kv:41
 msgid "gram"
 msgstr ""
 
-#: keepupthepace.kv:37
-msgid "test3"
+#: keepupthepace.kv:43
+msgid "Age :"
 msgstr ""
 
-#: keepupthepace.kv:38
-msgid "test"
+#: keepupthepace.kv:51
+msgid "BMI (old formula) : "
 msgstr ""
 
-#: keepupthepace.kv:40
-msgid "test4"
+#: keepupthepace.kv:56
+msgid "BMI (new formula)"
+msgstr ""
+
+#: keepupthepace.kv:59
+msgid "not enough data"
 msgstr ""

@@ -13,28 +13,46 @@
                 Label:
                     text: tr._('Height :')
                 TextInput: 
+                    id: profile_height_integerpart
+                    input_filter: 'int'
                     multiline: False
                 Label:
                     text: tr._('Meter')
                 TextInput:
+                    input_filter: 'int'
+                    id: profile_height_decimalpart
                     multiline: False
                 Label:
                     text: tr._('Centimeter')
                 Label:
                     text: tr._('Weight :')
                 TextInput: 
+                    input_filter: 'int'                    
+                    id: profile_weight_integerpart
                     multiline: False
                 Label:
                     text: tr._('kilogram')
                 TextInput:
+                    input_filter: 'int'
+                    id: profile_weight_decimalpart
                     multiline: False
                 Label:
                     text: tr._('gram')
-        BoxLayout:
-            orientation: 'vertical'
-            Button:
-                size_hint: (1,0.5)
-                text: tr._('test3')
-                on_press: print(tr._('test'))
-            Button:
-                text: tr._('test4')
+                Label:
+                    text: tr._('Age :')
+                TextInput:
+                    input_filter: 'int'
+                    id: profile_age
+                    multiline: False
+            GridLayout:
+                cols: 2
+                Label:
+                    text: tr._('BMI (old formula) : ')
+                Label:
+                    id: bmi_value_old_formula
+                    text: 'not enough data'
+                Label:
+                    text: tr._('BMI (new formula)')
+                Label:
+                    id: bmi_value_new_formula
+                    text: tr._('not enough data')
