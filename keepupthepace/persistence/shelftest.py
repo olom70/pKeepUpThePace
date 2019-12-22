@@ -1,8 +1,9 @@
 import shelve
 
-class IterRegistry(type):
-    def __iter__(cls):
-        return iter(cls._registry)
+import os
+import sys
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
+from keepupthepace.persistence.iterregistry import IterRegistry
 
 class MyClass(object):
     _counter = 0
@@ -15,7 +16,6 @@ class MyClass(object):
  
     def addText(self, text):
         self.text = text
-
 
 firstC = MyClass()
 firstC.addText("Un")

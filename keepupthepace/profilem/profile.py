@@ -3,15 +3,26 @@ import sys
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 import keepupthepace.profilem.enumandconst as enumandconst
 import math
+from keepupthepace.persistence.iterregistry import IterRegistry
 
-class Profile:
+class Profile(object):
     '''
         This class holds :
         - all the characteristics of a person (age, weigth, etc.)
         - and the infered metrics (BMI, RMR, etc.)
         - the activity factor ( do I lay all day long or do I have multiple physical activities ?)
     '''
+    _counter = 0
+    _registry = []
+
+
     def __init__(self, profileName='a profile'):
+        # populate iteration dictionary
+        self._registry.append(self)
+        #Assigning an id to this instance
+        Profile._counter += +1
+        self.id = Profile._counter
+
         self.profileName = profileName
         self.maleSign = '♂'
         self.femaleSign = '♀'
@@ -430,4 +441,5 @@ if __name__ == "__main__":
     print(myProfile.quadraticBodyDensity)
     print(myProfile.exponentialBodyDensity)
     print(myProfile.quadraticFatPercentage)
+    print(myProfile.id)
 

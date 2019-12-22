@@ -2,8 +2,6 @@ import kivy
 kivy.require('1.11.1')
 from kivy.app import App
 from kivy.uix.pagelayout import PageLayout
-from kivy.clock import Clock
-from kivy.properties import ObjectProperty
 import lang
 
 import os
@@ -11,7 +9,6 @@ import sys
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 import keepupthepace.profilem.profile as profile
 import keepupthepace.profilem.enumandconst as enumandconst
-
 
 tr = lang.Lang("en")
 
@@ -41,7 +38,7 @@ class Front1(PageLayout):
 
 class KeepUpThepaceApp(App):
     '''
-        main Class to launch the App
+        Main Class to launch the App
     '''
     lang = kivy.properties.StringProperty(tr.lang)
 
