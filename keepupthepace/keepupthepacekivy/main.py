@@ -2,6 +2,8 @@ import kivy
 kivy.require('1.11.1')
 from kivy.app import App
 from kivy.uix.pagelayout import PageLayout
+from kivy.clock import Clock
+from kivy.properties import ObjectProperty
 import lang
 
 import os
@@ -14,7 +16,28 @@ import keepupthepace.profilem.enumandconst as enumandconst
 tr = lang.Lang("en")
 
 class Front1(PageLayout):
-    pass    
+    '''
+        Main User Interface of the application
+    '''
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.ids.profile_height_integerpart.text = str(myProfile.heightIntegerPart)
+        self.ids.profile_height_decimalpart.text = str(myProfile.heightDecimalPart)
+        self.ids.profile_weight_integerpart.text = str(myProfile.weightIntegerPart)
+        self.ids.profile_weight_decimalpart.text = str(myProfile.weightDecimalPart)
+        self.ids.profile_age.text = str(myProfile.age)
+
+    def displayBMI(self):
+        try:
+            myProfile.computeBMI()
+            self.ids.bmi_value_old_formula.text = str(myProfile.bBMI)
+            self.ids.bmi_value_new_formula.text = str(myProfile.nBMI)
+        except ValueError:
+            self.ids.bmi_value_old_formula.text = 'not enough values'
+            self.ids.bmi_value_new_formula.text = 'not enough values'
+
+
 
 class KeepUpThepaceApp(App):
     '''
@@ -28,7 +51,6 @@ class KeepUpThepaceApp(App):
     def build(self):
         return Front1()
     
-
 if __name__ == "__main__":
 
     # initialize a profile to test the app

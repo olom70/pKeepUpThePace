@@ -11,31 +11,36 @@
             GridLayout:
                 cols: 5
                 Label:
+                    id: bh
                     text: tr._('Height :')
                 TextInput: 
                     id: profile_height_integerpart
                     input_filter: 'int'
                     multiline: False
+                    on_text_validate: root.displayBMI()
                 Label:
                     text: tr._('Meter')
                 TextInput:
                     input_filter: 'int'
                     id: profile_height_decimalpart
                     multiline: False
+                    on_text_validate: root.displayBMI()
                 Label:
                     text: tr._('Centimeter')
                 Label:
                     text: tr._('Weight :')
                 TextInput: 
-                    input_filter: 'int'                    
+                    input_filter: 'int'    
                     id: profile_weight_integerpart
                     multiline: False
+                    on_text_validate: root.displayBMI()
                 Label:
                     text: tr._('kilogram')
                 TextInput:
                     input_filter: 'int'
                     id: profile_weight_decimalpart
                     multiline: False
+                    on_text_validate: root.displayBMI()
                 Label:
                     text: tr._('gram')
                 Label:
@@ -44,6 +49,7 @@
                     input_filter: 'int'
                     id: profile_age
                     multiline: False
+                    on_text_validate: root.displayBMI()
             GridLayout:
                 cols: 2
                 Label:
