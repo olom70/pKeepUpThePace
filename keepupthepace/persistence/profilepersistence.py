@@ -18,6 +18,8 @@ def loadprofiles():
         if (len(shelf) != 0):
             profilelist = list(shelf.values())
             #TODO iterate the list and populate the registry with all the profiles
+            for p in profilelist:
+                p.addToRegistry()
         return profilelist
     finally:
         shelf.close
@@ -46,7 +48,7 @@ def saveprofiles():
     try:
         shelf = shelve.open('profileshelf')
         for ProfileObject in profile.Profile._registry:
-            id = str(ProfileObject.id)
+            id = str(ProfileObject.uid)
             shelf[id] = ProfileObject
     finally:
         shelf.close
@@ -59,7 +61,7 @@ def deleteprofile(Profileinstance):
         try:
             shelf = shelve.open('profileshelf')
             if str(Profileinstance.id) in shelf:
-                id = str(Profileinstance.id)
+                id = str(Profileinstance.uid)
                 del shelf[id]
         finally:
             shelf.close

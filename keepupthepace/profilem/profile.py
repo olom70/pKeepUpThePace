@@ -1,8 +1,9 @@
 import os
 import sys
+import uuid
+import math
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 import keepupthepace.profilem.enumandconst as enumandconst
-import math
 from keepupthepace.persistence.iterregistry import IterRegistry
 
 class Profile(object):
@@ -14,13 +15,14 @@ class Profile(object):
     '''
     _counter = 0
     _registry = []
-
+    
 
     def __init__(self, profileName='a profile'):
         # populate iteration dictionary
         self._registry.append(self)
         #Assigning an id to this instance
         Profile._counter += +1
+        self.uid = uuid.uuid1()
         self.id = Profile._counter
 
         self.isdefault = False
