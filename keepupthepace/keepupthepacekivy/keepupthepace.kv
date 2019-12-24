@@ -1,57 +1,66 @@
 #:kivy 1.11.1
 #:import tr __main__.tr
 
+<BMILabel@Label>:
+    size: self.texture_size
+    color: 0.2,0.8,0.5,1
+
+<MainLabel@Label>:
+    font_size: 30
+
 <Front1>:
     PageLayout:
         BoxLayout:
             orientation: 'vertical'
-            Label:
+            MainLabel:
                 text: tr._('BMI')
                 size: self.texture_size
             GridLayout:
                 cols: 2
-                Label:
+                BMILabel:
                     text: tr._('current profile')
+                    size: self.texture_size
                 TextInput:
                     id: profile_name
                     multiline: False
+                    size: (1, 1)
                     text: tr._('default name')
                     on_text_validate: root.save()
             GridLayout:
                 cols: 5
-                Label:
+                BMILabel:
                     text: tr._('Height :')
                 TextInput: 
                     id: profile_height_integerpart
                     input_filter: 'int'
                     multiline: False
                     on_text_validate: root.displayBMI()
-                Label:
+                BMILabel:
                     text: tr._('Meter')
                 TextInput:
                     input_filter: 'int'
                     id: profile_height_decimalpart
                     multiline: False
                     on_text_validate: root.displayBMI()
-                Label:
+                BMILabel:
                     text: tr._('Centimeter')
-                Label:
+                BMILabel:
                     text: tr._('Weight :')
                 TextInput: 
                     input_filter: 'int'    
                     id: profile_weight_integerpart
                     multiline: False
                     on_text_validate: root.displayBMI()
-                Label:
+                BMILabel:
                     text: tr._('kilogram')
                 TextInput:
                     input_filter: 'int'
                     id: profile_weight_decimalpart
                     multiline: False
                     on_text_validate: root.displayBMI()
-                Label:
+                BMILabel:
                     text: tr._('gram')
-                Label:
+                BMILabel:
                     text: tr._('Age :')
                 TextInput:
                     input_filter: 'int'
@@ -60,13 +69,13 @@
                     on_text_validate: root.displayBMI()
             GridLayout:
                 cols: 2
-                Label:
+                BMILabel:
                     text: tr._('BMI (old formula) : ')
-                Label:
+                BMILabel:
                     id: bmi_value_old_formula
                     text: 'not enough data'
-                Label:
+                BMILabel:
                     text: tr._('BMI (new formula)')
-                Label:
+                BMILabel:
                     id: bmi_value_new_formula
                     text: tr._('not enough data')
