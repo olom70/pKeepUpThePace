@@ -23,6 +23,7 @@ class Profile(object):
         Profile._counter += +1
         self.id = Profile._counter
 
+        self.isdefault = False
         self.profileName = profileName
         self.maleSign = '♂'
         self.femaleSign = '♀'
@@ -56,6 +57,12 @@ class Profile(object):
         self.quadraticFatPercentage = None
         self.exponentialFatPercentage = None
 
+
+    def addToRegistry(self):
+        '''
+            populate the registry when a profile is loaded from the shelf
+        '''
+        self._registry.append(self)
 
     def computeWeigth(self):
         '''

@@ -9,6 +9,15 @@
                 text: tr._('BMI')
                 size: self.texture_size
             GridLayout:
+                cols: 2
+                Label:
+                    text: tr._('current profile')
+                TextInput:
+                    id: profile_name
+                    multiline: False
+                    text: tr._('default name')
+                    on_text_validate: root.save()
+            GridLayout:
                 cols: 5
                 Label:
                     text: tr._('Height :')

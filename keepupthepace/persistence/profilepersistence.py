@@ -1,25 +1,43 @@
+# Module to persist (save/load) profiles created in the application Keep Up The Pace
 import shelve
 from random import randrange
 import os
 import sys
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
-from keepupthepace.persistence.iterregistry import IterRegistry
+#from keepupthepace.persistence.iterregistry import IterRegistry
 import keepupthepace.profilem.profile as profile
 import keepupthepace.profilem.enumandconst as enumandconst
 
-
 def loadprofiles():
     '''
-        Load all the previous saved profiles in a list
+        Load all the previous saved profiles in a list and return the list
     '''
     profilelist = []
     try:
         shelf = shelve.open("profileshelf")
         if (len(shelf) != 0):
             profilelist = list(shelf.values())
+            #TODO iterate the list and populate the registry with all the profiles
         return profilelist
     finally:
         shelf.close
+
+def getDefaultProfileFromShelf():
+    '''
+        Load all the previous saved profiles in a list and extract the one market as default.
+        Return both the list and the default profile
+    '''
+    pl = loadprofiles()
+    profiletoreturn = None
+    if (len(pl) !=0):
+        for aProfile in pl:
+            if aProfile.isdefault:
+                profiletoreturn = aProfile
+        if (profiletoreturn is None):
+            #no default profile found, return the first one
+            profiletoreturn = pl[0]
+            profiletoreturn.isdefault = True
+    return pl, profiletoreturn
 
 def saveprofiles():
     '''
@@ -65,6 +83,7 @@ if __name__ == "__main__":
     # create 2 profiles
     FirstProfile = profile.Profile('test1')
     FirstProfile.age = 35
+    FirstProfile.isdefault = True
     FirstProfile.gender = enumandconst.Gender.FEMALE
     FirstProfile.weightIntegerPart = 60
     FirstProfile.weightDecimalPart = 0
@@ -88,6 +107,13 @@ if __name__ == "__main__":
     profileList = loadprofiles()
     for pr in profileList:
         print(pr.profileName)
+        if pr.isdefault:
+            print('That one was default')
+
+    # get the default one and print its name
+    l, p = getDefaultProfileFromShelf()
+    print(p.profileName)
+    print('it was again the default')
 
     # delete one profile
     position = randrange(0, 1)
