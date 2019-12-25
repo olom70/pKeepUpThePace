@@ -1,12 +1,19 @@
 #:kivy 1.11.1
 #:import tr __main__.tr
 
-<BMILabel@Label>:
+<KLabel@Label>:
     size: self.texture_size
     color: 0.2,0.8,0.5,1
 
 <MainLabel@Label>:
     font_size: 30
+    size: self.texture_size
+
+<KTextInput@TextInput>:
+    size_hint_max: (200, 30)
+    size_hint_min: (150, 20)
+    multiline: False
+
 
 <Front1>:
     PageLayout:
@@ -14,68 +21,60 @@
             orientation: 'vertical'
             MainLabel:
                 text: tr._('BMI')
-                size: self.texture_size
             GridLayout:
                 cols: 2
-                BMILabel:
+                KLabel:
                     text: tr._('current profile')
                     size: self.texture_size
-                TextInput:
+                KTextInput:
                     id: profile_name
-                    multiline: False
-                    size: (1, 1)
                     text: tr._('default name')
                     on_text_validate: root.save()
             GridLayout:
                 cols: 5
-                BMILabel:
+                KLabel:
                     text: tr._('Height :')
-                TextInput: 
+                KTextInput: 
                     id: profile_height_integerpart
                     input_filter: 'int'
-                    multiline: False
                     on_text_validate: root.displayBMI()
-                BMILabel:
+                KLabel:
                     text: tr._('Meter')
-                TextInput:
+                KTextInput:
                     input_filter: 'int'
                     id: profile_height_decimalpart
-                    multiline: False
                     on_text_validate: root.displayBMI()
-                BMILabel:
+                KLabel:
                     text: tr._('Centimeter')
-                BMILabel:
+                KLabel:
                     text: tr._('Weight :')
-                TextInput: 
+                KTextInput: 
                     input_filter: 'int'    
                     id: profile_weight_integerpart
-                    multiline: False
                     on_text_validate: root.displayBMI()
-                BMILabel:
+                KLabel:
                     text: tr._('kilogram')
-                TextInput:
+                KTextInput:
                     input_filter: 'int'
                     id: profile_weight_decimalpart
-                    multiline: False
                     on_text_validate: root.displayBMI()
-                BMILabel:
+                KLabel:
                     text: tr._('gram')
-                BMILabel:
+                KLabel:
                     text: tr._('Age :')
-                TextInput:
+                KTextInput:
                     input_filter: 'int'
                     id: profile_age
-                    multiline: False
                     on_text_validate: root.displayBMI()
             GridLayout:
                 cols: 2
-                BMILabel:
+                KLabel:
                     text: tr._('BMI (old formula) : ')
-                BMILabel:
+                KLabel:
                     id: bmi_value_old_formula
                     text: 'not enough data'
-                BMILabel:
+                KLabel:
                     text: tr._('BMI (new formula)')
-                BMILabel:
+                KLabel:
                     id: bmi_value_new_formula
                     text: tr._('not enough data')
