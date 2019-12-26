@@ -1,0 +1,14 @@
+#:kivy 1.11.1
+#:include force dclasses.kv
+#import tr __main__.tr
+
+<RmR>:
+    orientation: 'vertical'
+    canvas:
+        Color:
+            rgba: 109/255., 8/255., 57/255., 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    MainLabel:
+        text: 'hello'

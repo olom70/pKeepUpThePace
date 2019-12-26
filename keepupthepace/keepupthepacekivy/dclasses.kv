@@ -1,0 +1,17 @@
+#:kivy 1.11.1
+
+#
+# Dynamc Classes of all the widgets that are spread in the app but with the same layout
+#
+<KLabel@Label>:
+    size: self.texture_size
+    color: 0.2,0.8,0.5,1
+
+<MainLabel@Label>:
+    font_size: 30
+    size: self.texture_size
+
+<KTextInput@TextInput>:
+    size_hint_max: (200, 30)
+    size_hint_min: (150, 20)
+    multiline: False

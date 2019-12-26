@@ -1,24 +1,23 @@
 #:kivy 1.11.1
+#:include force dclasses.kv
+#:include force rmr.kv
 #:import tr __main__.tr
 
-<KLabel@Label>:
-    size: self.texture_size
-    color: 0.2,0.8,0.5,1
-
-<MainLabel@Label>:
-    font_size: 30
-    size: self.texture_size
-
-<KTextInput@TextInput>:
-    size_hint_max: (200, 30)
-    size_hint_min: (150, 20)
-    multiline: False
 
 
 <Front1>:
     PageLayout:
         BoxLayout:
             orientation: 'vertical'
+            canvas:
+                Color:
+                    rgba: 8/255., 196/255., 57/255., 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            MainLabel:
+                text: 'hello'
+
             MainLabel:
                 text: tr._('BMI')
             GridLayout:
@@ -78,3 +77,4 @@
                 KLabel:
                     id: bmi_value_new_formula
                     text: tr._('not enough data')
+        RmR:
