@@ -21,7 +21,18 @@ class Overview(Screen):
     pass
 
 class Metrics(Screen):
-    pass
+    '''
+        Screen to enter all the metrics related to a profile
+    '''
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        #self.ids.profile_name.text = str(App.get_running_app().myProfile.profileName)
+        #self.ids.profile_height_integerpart.text = str(App.get_running_app().myProfile.heightIntegerPart)
+        #self.ids.profile_height_decimalpart.text = str(App.get_running_app().myProfile.heightDecimalPart)
+        #self.ids.profile_weight_integerpart.text = str(App.get_running_app().myProfile.weightIntegerPart)
+        #self.ids.profile_weight_decimalpart.text = str(App.get_running_app().myProfile.weightDecimalPart)
+        #self.ids.profile_age.text = str(App.get_running_app().myProfile.age)
+
 
 class BmI(Screen):
     pass
@@ -47,9 +58,24 @@ class KeepUpThepaceScApp(App):
     '''
     # set the language of the app
     lang = kivy.properties.StringProperty(tr.lang)
-
     def on_lang(self, instance, lang):
         lang.tr.switch_lang(lang)
+
+    #load saved profiles and instantiate the default one
+    listofprofiles, myProfile = persistence.getDefaultProfileFromShelf()
+
+    # initialize a profile to test the app, if none loaded
+    if not(isinstance(myProfile, profile.Profile)):
+        myProfile=profile.Profile('not coming from shelf')
+        myProfile.isdefault = True
+        myProfile.age = 35
+        myProfile.gender = enumandconst.Gender.FEMALE
+        myProfile.weightIntegerPart = 60
+        myProfile.weightDecimalPart = 0
+        myProfile.heightIntegerPart = 1
+        myProfile.heightDecimalPart = 68
+        myProfile.metricChoice = enumandconst.MetricChoice.ISO
+        myProfile.computeBMI()
 
 
     # Launch the user interface

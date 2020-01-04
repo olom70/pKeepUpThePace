@@ -7,5 +7,15 @@
     BoxLayout:
         orientation: 'vertical'
         Navigation:
-        MainLabel:
-            text: 'bmi'
+        GridLayout:
+            cols: 2
+            KLabel:
+                text: tr._('BMI (old formula) : ')
+            KLabel:
+                id: bmi_value_old_formula
+                text: str(app.myProfile.bBMI)
+            KLabel:
+                text: tr._('BMI (new formula)')
+            KLabel:
+                id: bmi_value_new_formula
+                text: str(app.myProfile.nBMI)
