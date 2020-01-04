@@ -1,0 +1,25 @@
+#:kivy 1.11.1
+#:include force dclasses.kv
+
+#import tr __main__.tr
+
+<Navigation>:
+    orientation: 'horizontal'
+    canvas:
+        Color:
+            rgba: 0/255., 0/255., 0/255., 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    Button:
+        text: 'Next screen'
+        size_hint: None, None
+        pos_hint: {'right': 1}
+        size: 150, 50
+        on_release: app.nextscreen()
+
+    Button:
+        text: 'Previous screen'
+        size_hint: None, None
+        size: 150, 50
+        on_release: app.previousscreen()

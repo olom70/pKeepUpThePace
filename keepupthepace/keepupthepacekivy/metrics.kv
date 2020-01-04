@@ -1,10 +1,9 @@
 #:kivy 1.11.1
 #:include force dclasses.kv
 #:include force navigation.kv
+#:import tr __main__.tr
 
-#import tr __main__.tr
-
-<RmR>:
+<Metrics>:
     BoxLayout:
         orientation: 'vertical'
         canvas:
@@ -15,4 +14,4 @@
                 size: self.size
         Navigation:
         MainLabel:
-            text: 'rmr'
+            text: 'metrics'
