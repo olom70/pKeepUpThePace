@@ -29,6 +29,7 @@
                 id: profile_height_integerpart
                 input_filter: 'int'
                 text: str(app.myProfile.heightIntegerPart)
+                on_text_validate: root.initProfileUpdate('heightIntegerPart')
             KLabel:
                 text: tr._('Meter')
             KTextInput:

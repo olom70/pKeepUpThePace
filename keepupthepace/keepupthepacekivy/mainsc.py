@@ -2,6 +2,8 @@ import kivy
 kivy.require('1.11.1')
 from kivy.app import App
 from kivy.uix.screenmanager import ScreenManager, Screen, FadeTransition
+from kivy.uix.behaviors import FocusBehavior
+from kivy.uix.textinput import TextInput
 
 from kivy.uix.boxlayout import BoxLayout
 import lang
@@ -27,11 +29,15 @@ class Metrics(Screen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         #self.ids.profile_name.text = str(App.get_running_app().myProfile.profileName)
-        #self.ids.profile_height_integerpart.text = str(App.get_running_app().myProfile.heightIntegerPart)
-        #self.ids.profile_height_decimalpart.text = str(App.get_running_app().myProfile.heightDecimalPart)
-        #self.ids.profile_weight_integerpart.text = str(App.get_running_app().myProfile.weightIntegerPart)
-        #self.ids.profile_weight_decimalpart.text = str(App.get_running_app().myProfile.weightDecimalPart)
-        #self.ids.profile_age.text = str(App.get_running_app().myProfile.age)
+    
+    def initProfileUpdate(self, metricToSave):
+        '''
+            Update the current Profile with the modified value
+        '''
+        if (metricToSave == 'heightIntegerPart'):
+            valueToSave = int(self.ids.profile_height_integerpart.text)
+        if (valueToSave is not None):
+            kivy.app.App.get_running_app().myProfile.heightIntegerPart = valueToSave
 
 
 class BmI(Screen):
@@ -78,8 +84,10 @@ class KeepUpThepaceScApp(App):
         myProfile.computeBMI()
 
 
-    # Launch the user interface
     def build(self):
+        '''
+            build the screen manager of the app
+        '''
         root = ScreenManager(transition=FadeTransition())
         root.add_widget(Welcome(name='welcome'))
         root.add_widget(Overview(name='overview'))
@@ -90,11 +98,28 @@ class KeepUpThepaceScApp(App):
         root.add_widget(ProfileManager(name='profilemanager'))
         root.add_widget(Settings(name='settings'))
         return root
+    
+    def doThingsBetweenScreen(self):
+        '''
+            actions done between the transition from one screen to another
+        '''
+        if (self.root.current == 'metrics'):
+            self.myProfile.computeAll()
 
     def nextscreen(self):
+        '''
+            Navigate to the next screen of the screen manager.
+            Called by the navigation metric
+        '''
+        self.doThingsBetweenScreen()
         self.root.current = self.root.next()
     
     def previousscreen(self):
+        '''
+            Navigate to the previous screen of the screen manager.
+            Called by the navigation metric
+        '''
+        self.doThingsBetweenScreen()
         self.root.current = self.root.previous()
 
     

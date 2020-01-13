@@ -423,6 +423,25 @@ class Profile(object):
                 raise ValueError("computeFat : a Gender value has been added and is yet to handle")
         else:
             raise ValueError("computeFAT : Initialise Gender first")
+    
+    def computeAll(self):
+        try:
+            self.computeBMI()
+        except ValueError:
+            pass
+        try:
+            self.computeRMR()
+        except ValueError:
+            pass
+        try:
+            self.computeHBE()
+        except ValueError:
+            pass
+        try:
+            self.computeFAT()
+        except ValueError:
+            pass
+        
 
 if __name__ == "__main__":
     myProfile = Profile('clode')
