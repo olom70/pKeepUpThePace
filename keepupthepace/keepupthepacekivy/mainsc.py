@@ -4,8 +4,9 @@ from kivy.app import App
 from kivy.uix.screenmanager import ScreenManager, Screen, FadeTransition
 from kivy.uix.behaviors import FocusBehavior
 from kivy.uix.textinput import TextInput
-
 from kivy.uix.boxlayout import BoxLayout
+import kivy.properties as properties
+
 import lang
 import os
 import sys
@@ -26,9 +27,6 @@ class Metrics(Screen):
     '''
         Screen to enter all the metrics related to a profile
     '''
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        #self.ids.profile_name.text = str(App.get_running_app().myProfile.profileName)
     
     def initProfileUpdate(self, metricToSave):
         '''
@@ -41,7 +39,12 @@ class Metrics(Screen):
 
 
 class BmI(Screen):
-    pass
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        #self.ids.profile_name.text = str(App.get_running_app().myProfile.profileName)
+        App.get_running_app().kbbmi = App.get_running_app().myProfile.displaybBMI()
+        App.get_running_app().knbmi = App.get_running_app().myProfile.displaynBMI()
+
 
 class RmR(Screen):
     pass
@@ -69,6 +72,16 @@ class KeepUpThepaceScApp(App):
 
     #load saved profiles and instantiate the default one
     listofprofiles, myProfile = persistence.getDefaultProfileFromShelf()
+
+    # define the properties that will be updated in the user interface
+    knbmi = properties.StringProperty('0')
+    kbbmi = properties.StringProperty('0')
+    kbmr = properties.StringProperty('0')
+    khbe1918 = properties.StringProperty('0')
+    khbe1984 = properties.StringProperty('0')
+    khbe1990 = properties.StringProperty('0')
+    kqfp = properties.StringProperty('0')
+    kefp = properties.StringProperty('0')
 
     # initialize a profile to test the app, if none loaded
     if not(isinstance(myProfile, profile.Profile)):
@@ -105,6 +118,11 @@ class KeepUpThepaceScApp(App):
         '''
         if (self.root.current == 'metrics'):
             self.myProfile.computeAll()
+            self.kbbmi = self.myProfile.displaybBMI()
+            self.knbmi = self.myProfile.displaynBMI()
+            self.kbmr = self.myProfile.displayBMR()
+            self.khbe1918, self.khbe1984, self.khbe1990 = self.myProfile.displayHBE()
+            self.kqfp, self.kefp = self.myProfile.displayFAT()
 
     def nextscreen(self):
         '''

@@ -100,23 +100,25 @@ class Profile(object):
     def displaynBMI(self):
         '''
             Trunc the new BMI to the nearest integer
+            return 0 if there is not enough values to calculate it
         '''
         if self.nBMI is not None:
             truncatednBMI = math.trunc(self.nBMI)
-            return truncatednBMI
+            return str(truncatednBMI)
         else:
-            raise ValueError("In order to display nBMI, it needs initialization first")
+            return '0'
 
     
     def displaybBMI(self):
         '''
             Trunc the classic BMI to the nearest integer
+            return 0 if there is not enough values to calculate it
         '''
         if self.bBMI is not None:
             truncatedbBMI = math.trunc(self.bBMI)
-            return truncatedbBMI
+            return str(truncatedbBMI)
         else:
-            raise ValueError("In order to display bBMI, it needs initialization first")
+            return '0'
 
 
     def computeBMI(self):
@@ -255,6 +257,17 @@ class Profile(object):
         self.rRMRcal.update({enumandconst.RmrDates.A1990 : rmrtemp})
         self.rRMRml.update({enumandconst.RmrDates.A1990 : self.__computeRMRml(self.rRMRcal.get(enumandconst.RmrDates.A1990))})
 
+    def displayBMR(self):
+        '''
+            Trunc the BMR to the nearest integer
+            return 0 if there is not enough values to calculate it
+        '''
+        if self.bBMR is not None:
+            truncatedbBMR = math.trunc(self.bBMR)
+            return str(truncatedbBMR)
+        else:
+            return '0'
+
 
     def computeRMR(self):
         '''
@@ -293,6 +306,24 @@ class Profile(object):
 
         return self.bBMR
 
+    def displayHBE(self):
+        '''
+            Trunc the HBE to the nearest integer
+            return the 3 values in a list in this order :
+              - 1918 formula
+              - 1984 formula
+              - 1990 formula
+            return 0 if there is not enough values to calculate it
+        '''
+        if (len(self.hHBE) != 0):
+            hbe1918 = str(self.hHBE.get(enumandconst.RmrDates.A1918))
+            hbe1984 = str(self.hHBE.get(enumandconst.RmrDates.A1984))
+            hbe1990 = str(self.hHBE.get(enumandconst.RmrDates.A1990))
+            return hbe1918, hbe1984, hbe1990
+        else:
+            return '0', '0', '0'
+
+
     def computeHBE(self):
         '''
             compute the HBE that depends of the level of activity for a typical week
@@ -329,6 +360,22 @@ class Profile(object):
                 raise ValueError("Unexpected activity factor. A new value have been added and is yet to handle")
         else:
             raise ValueError("The computation of HBR needs these values initialised : Activity Factor and RMR")
+
+    def displayFAT(self):
+        '''
+            Trunc the fat percentage to the nearest integer
+            return in a list the results il a list in this order :
+            - quadratic formula
+            - exponential formula
+            return 0 if there is not enough values to calculate it
+        '''
+        if (self.quadraticFatPercentage is not None
+                and self.exponentialFatPercentage is not None):
+            truncatedQFP = math.trunc(self.quadraticFatPercentage)
+            truncatedEFP = math.trunc(self.exponentialFatPercentage)
+            return truncatedQFP, truncatedEFP
+        else:
+            return '0', '0'
 
     def __computeFatPercentage(self):
         '''
@@ -425,6 +472,9 @@ class Profile(object):
             raise ValueError("computeFAT : Initialise Gender first")
     
     def computeAll(self):
+        '''
+            compute all the values from the metrics entered.
+        '''
         try:
             self.computeBMI()
         except ValueError:
@@ -441,7 +491,7 @@ class Profile(object):
             self.computeFAT()
         except ValueError:
             pass
-        
+    
 
 if __name__ == "__main__":
     myProfile = Profile('clode')
