@@ -37,14 +37,12 @@ class Metrics(Screen):
         if (valueToSave is not None):
             kivy.app.App.get_running_app().myProfile.heightIntegerPart = valueToSave
 
-
 class BmI(Screen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         #self.ids.profile_name.text = str(App.get_running_app().myProfile.profileName)
         App.get_running_app().kbbmi = App.get_running_app().myProfile.displaybBMI()
         App.get_running_app().knbmi = App.get_running_app().myProfile.displaynBMI()
-
 
 class RmR(Screen):
     pass
@@ -118,6 +116,7 @@ class KeepUpThepaceScApp(App):
         '''
         if (self.root.current == 'metrics'):
             self.myProfile.computeAll()
+            persistence.saveprofiles()
             self.kbbmi = self.myProfile.displaybBMI()
             self.knbmi = self.myProfile.displaynBMI()
             self.kbmr = self.myProfile.displayBMR()
@@ -127,7 +126,7 @@ class KeepUpThepaceScApp(App):
     def nextscreen(self):
         '''
             Navigate to the next screen of the screen manager.
-            Called by the navigation metric
+            Called by the navigation widget
         '''
         self.doThingsBetweenScreen()
         self.root.current = self.root.next()
@@ -135,7 +134,7 @@ class KeepUpThepaceScApp(App):
     def previousscreen(self):
         '''
             Navigate to the previous screen of the screen manager.
-            Called by the navigation metric
+            Called by the navigation widget
         '''
         self.doThingsBetweenScreen()
         self.root.current = self.root.previous()
