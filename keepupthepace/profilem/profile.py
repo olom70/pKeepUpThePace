@@ -59,12 +59,37 @@ class Profile(object):
         self.quadraticFatPercentage = None
         self.exponentialFatPercentage = None
 
-
     def addToRegistry(self):
         '''
             populate the registry when a profile is loaded from the shelf
         '''
         self._registry.append(self)
+
+    def getAllActivityFactors(self):
+        '''
+            Return all the occurences of the Enum ActivityFactor in a dictionary
+        '''
+        dictOfActivityFactors = {}
+        for ActivityFactorList in enumandconst.ActivityFactor:
+            if (ActivityFactorList == enumandconst.ActivityFactor.SEDENTARY):
+                name = '>'
+            elif ActivityFactorList == (enumandconst.ActivityFactor.LIGHTLYACTIVE):
+                name = '>>'
+            elif (ActivityFactorList == enumandconst.ActivityFactor.MODERATELYACTIVE):
+                name = '>>>'
+            elif (ActivityFactorList == enumandconst.ActivityFactor.ACTIVE):
+                name = '>>>>'
+            elif (ActivityFactorList == enumandconst.ActivityFactor.VIGOROUS):
+                name = '>>>>>'
+            elif (ActivityFactorList == enumandconst.ActivityFactor.VIGOROUSLYACTIVE):
+                name = '>>>>>>'
+            else:
+                raise ValueError('unexpected ActivityFactor')
+            dictOfActivityFactors.update({str(ActivityFactorList.value): name})
+        return dictOfActivityFactors
+
+
+
 
     def computeWeigth(self):
         '''
@@ -520,4 +545,6 @@ if __name__ == "__main__":
     print(myProfile.exponentialBodyDensity)
     print(myProfile.quadraticFatPercentage)
     print(myProfile.id)
+    print(myProfile.getAllActivityFactors())
+    print(myProfile.getAllActivityFactors()['1'])
 

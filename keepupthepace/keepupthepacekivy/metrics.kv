@@ -3,6 +3,7 @@
 #:include force navigation.kv
 #:import tr __main__.tr
 
+
 <Metrics>:
     BoxLayout:
         orientation: 'vertical'
@@ -52,9 +53,24 @@
                 text: str(app.myProfile.weightDecimalPart)
             KLabel:
                 text: tr._('gram')
+        GridLayout:
+            cols:4
             KLabel:
                 text: tr._('Age :')
             KTextInput:
                 input_filter: 'int'
                 id: profile_age
                 text: str(app.myProfile.age)
+            KLabel:
+                text: tr._('Gender')
+            KTextInput:
+                id: profile_gender
+                text: str(app.myProfile.gender)
+            KLabel:
+                text: tr._('Physical activity level')
+            Spinner:
+                size_hint: None, None
+                size: 100, 44
+                pos_hint: {'center': (.5, .5)}
+                text: str(app.myProfile.activityFactor)
+                values: str(app.myProfile.getAllActivityFactors()['1']), str(app.myProfile.getAllActivityFactors()['2']), str(app.myProfile.getAllActivityFactors()['3']), str(app.myProfile.getAllActivityFactors()['4']), str(app.myProfile.getAllActivityFactors()['5']), str(app.myProfile.getAllActivityFactors()['6'])

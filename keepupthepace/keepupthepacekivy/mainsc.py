@@ -5,6 +5,8 @@ from kivy.uix.screenmanager import ScreenManager, Screen, FadeTransition
 from kivy.uix.behaviors import FocusBehavior
 from kivy.uix.textinput import TextInput
 from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.dropdown import DropDown
+from kivy.uix.button import Button
 import kivy.properties as properties
 
 import lang
@@ -27,7 +29,6 @@ class Metrics(Screen):
     '''
         Screen to enter all the metrics related to a profile
     '''
-    
     def initProfileUpdate(self, metricToSave):
         '''
             Update the current Profile with the modified value
