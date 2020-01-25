@@ -128,6 +128,9 @@ class KeepUpThepaceScApp(App):
         root.add_widget(ProfileManager(name='profilemanager'))
         root.add_widget(Settings(name='settings'))
         return root
+
+    def on_stop(self):
+        persistence.saveprofiles()
     
     def doThingsBetweenScreen(self):
         '''
