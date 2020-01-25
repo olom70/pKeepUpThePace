@@ -65,26 +65,13 @@ class Profile(object):
         '''
         self._registry.append(self)
 
-    def getAllActivityFactors(self):
+    def (self):
         '''
             Return all the occurences of the Enum ActivityFactor in a dictionary
         '''
         dictOfActivityFactors = {}
         for ActivityFactorList in enumandconst.ActivityFactor:
-            if (ActivityFactorList == enumandconst.ActivityFactor.SEDENTARY):
-                name = self.displayActivityFactor(from_getAllActivityFactors=ActivityFactorList)
-            elif ActivityFactorList == (enumandconst.ActivityFactor.LIGHTLYACTIVE):
-                name = self.displayActivityFactor(from_getAllActivityFactors=ActivityFactorList)
-            elif (ActivityFactorList == enumandconst.ActivityFactor.MODERATELYACTIVE):
-                name = self.displayActivityFactor(from_getAllActivityFactors=ActivityFactorList)
-            elif (ActivityFactorList == enumandconst.ActivityFactor.ACTIVE):
-                name = self.displayActivityFactor(from_getAllActivityFactors=ActivityFactorList)
-            elif (ActivityFactorList == enumandconst.ActivityFactor.VIGOROUS):
-                name = self.displayActivityFactor(from_getAllActivityFactors=ActivityFactorList)
-            elif (ActivityFactorList == enumandconst.ActivityFactor.VIGOROUSLYACTIVE):
-                name = self.displayActivityFactor(from_getAllActivityFactors=ActivityFactorList)
-            else:
-                raise ValueError('unexpected ActivityFactor')
+            name = self.displayActivityFactor(from_getAllActivityFactors=ActivityFactorList)
             dictOfActivityFactors.update({str(ActivityFactorList.value): name})
         return dictOfActivityFactors
 
