@@ -65,7 +65,7 @@ class Profile(object):
         '''
         self._registry.append(self)
 
-    def (self):
+    def getAllActivityFactors(self):
         '''
             Return all the occurences of the Enum ActivityFactor in a dictionary
         '''
