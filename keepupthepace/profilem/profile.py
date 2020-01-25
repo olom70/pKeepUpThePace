@@ -72,23 +72,45 @@ class Profile(object):
         dictOfActivityFactors = {}
         for ActivityFactorList in enumandconst.ActivityFactor:
             if (ActivityFactorList == enumandconst.ActivityFactor.SEDENTARY):
-                name = '>'
+                name = self.displayActivityFactor(from_getAllActivityFactors=ActivityFactorList)
             elif ActivityFactorList == (enumandconst.ActivityFactor.LIGHTLYACTIVE):
-                name = '>>'
+                name = self.displayActivityFactor(from_getAllActivityFactors=ActivityFactorList)
             elif (ActivityFactorList == enumandconst.ActivityFactor.MODERATELYACTIVE):
-                name = '>>>'
+                name = self.displayActivityFactor(from_getAllActivityFactors=ActivityFactorList)
             elif (ActivityFactorList == enumandconst.ActivityFactor.ACTIVE):
-                name = '>>>>'
+                name = self.displayActivityFactor(from_getAllActivityFactors=ActivityFactorList)
             elif (ActivityFactorList == enumandconst.ActivityFactor.VIGOROUS):
-                name = '>>>>>'
+                name = self.displayActivityFactor(from_getAllActivityFactors=ActivityFactorList)
             elif (ActivityFactorList == enumandconst.ActivityFactor.VIGOROUSLYACTIVE):
-                name = '>>>>>>'
+                name = self.displayActivityFactor(from_getAllActivityFactors=ActivityFactorList)
             else:
                 raise ValueError('unexpected ActivityFactor')
             dictOfActivityFactors.update({str(ActivityFactorList.value): name})
         return dictOfActivityFactors
 
+    def displayActivityFactor(self, **kwargs ):
+        '''
+            display the current activity factor on a scale going from > to >>>>>>
+        '''
+        if ('from_getAllActivityFactors' in kwargs):
+            af = kwargs['from_getAllActivityFactors']
+        else:
+            af = self.activityFactor
 
+        if (af == enumandconst.ActivityFactor.SEDENTARY):
+            return '>'
+        elif (af == enumandconst.ActivityFactor.LIGHTLYACTIVE):
+            return '>>'
+        elif (af == enumandconst.ActivityFactor.MODERATELYACTIVE):
+            return '>>>'
+        elif (af == enumandconst.ActivityFactor.ACTIVE):
+            return '>>>>'
+        elif (af == enumandconst.ActivityFactor.VIGOROUS):
+            return '>>>>>'
+        elif (af == enumandconst.ActivityFactor.VIGOROUSLYACTIVE):
+            return '>>>>>>'
+        else:
+            return '?'
 
 
     def computeWeigth(self):
@@ -547,4 +569,7 @@ if __name__ == "__main__":
     print(myProfile.id)
     print(myProfile.getAllActivityFactors())
     print(myProfile.getAllActivityFactors()['1'])
+    print(myProfile.displayActivityFactor())
+    print(myProfile.displayActivityFactor(from_getAllActivityFactors=enumandconst.ActivityFactor.VIGOROUSLYACTIVE))
+
 

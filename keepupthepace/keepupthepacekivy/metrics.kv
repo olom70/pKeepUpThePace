@@ -69,8 +69,10 @@
             KLabel:
                 text: tr._('Physical activity level')
             Spinner:
+                id: profile_activityFactor
                 size_hint: None, None
                 size: 100, 44
                 pos_hint: {'center': (.5, .5)}
-                text: str(app.myProfile.activityFactor)
+                text: str(app.myProfile.displayActivityFactor())
                 values: str(app.myProfile.getAllActivityFactors()['1']), str(app.myProfile.getAllActivityFactors()['2']), str(app.myProfile.getAllActivityFactors()['3']), str(app.myProfile.getAllActivityFactors()['4']), str(app.myProfile.getAllActivityFactors()['5']), str(app.myProfile.getAllActivityFactors()['6'])
+                on_text: root.initProfileUpdate('activityFactor')

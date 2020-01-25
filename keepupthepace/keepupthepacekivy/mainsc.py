@@ -29,14 +29,32 @@ class Metrics(Screen):
     '''
         Screen to enter all the metrics related to a profile
     '''
-    def initProfileUpdate(self, metricToSave):
+    def initProfileUpdate(self, metricToSave, *args):
         '''
             Update the current Profile with the modified value
         '''
         if (metricToSave == 'heightIntegerPart'):
             valueToSave = int(self.ids.profile_height_integerpart.text)
-        if (valueToSave is not None):
-            kivy.app.App.get_running_app().myProfile.heightIntegerPart = valueToSave
+            if (valueToSave >=0 and valueToSave <= 2):
+                kivy.app.App.get_running_app().myProfile.heightIntegerPart = valueToSave
+
+        if (metricToSave == 'activityFactor'):
+            valueToSave = str(self.ids.profile_activityFactor.text)
+            if (valueToSave == str(kivy.app.App.get_running_app().myProfile.getAllActivityFactors()['1'])):
+                 kivy.app.App.get_running_app().myProfile.activityFactor = enumandconst.ActivityFactor.SEDENTARY
+            if (valueToSave == str(kivy.app.App.get_running_app().myProfile.getAllActivityFactors()['2'])):
+                 kivy.app.App.get_running_app().myProfile.activityFactor = enumandconst.ActivityFactor.LIGHTLYACTIVE
+            if (valueToSave == str(kivy.app.App.get_running_app().myProfile.getAllActivityFactors()['3'])):
+                 kivy.app.App.get_running_app().myProfile.activityFactor = enumandconst.ActivityFactor.MODERATELYACTIVE
+            if (valueToSave == str(kivy.app.App.get_running_app().myProfile.getAllActivityFactors()['4'])):
+                 kivy.app.App.get_running_app().myProfile.activityFactor = enumandconst.ActivityFactor.ACTIVE
+            if (valueToSave == str(kivy.app.App.get_running_app().myProfile.getAllActivityFactors()['5'])):
+                 kivy.app.App.get_running_app().myProfile.activityFactor = enumandconst.ActivityFactor.VIGOROUS
+            if (valueToSave == str(kivy.app.App.get_running_app().myProfile.getAllActivityFactors()['6'])):
+                 kivy.app.App.get_running_app().myProfile.activityFactor = enumandconst.ActivityFactor.VIGOROUSLYACTIVE
+
+            
+                 
 
 class BmI(Screen):
     def __init__(self, **kwargs):
