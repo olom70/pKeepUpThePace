@@ -39,6 +39,7 @@
                 text: str(app.myProfile.heightDecimalPart)
             KLabel:
                 text: tr._('Centimeter')
+#1
             KLabel:
                 text: tr._('Weight :')
             KTextInput: 
@@ -53,8 +54,7 @@
                 text: str(app.myProfile.weightDecimalPart)
             KLabel:
                 text: tr._('gram')
-#        GridLayout:
-#            cols:4
+ #1
             KLabel:
                 text: tr._('Age :')
             KTextInput:
@@ -63,10 +63,13 @@
                 text: str(app.myProfile.age)
             KLabel:
                 text: tr._('Gender')
-            KTextInput:
+            KSpinner:
                 id: profile_gender
-                text: str(app.myProfile.gender)
+                font_name: 'Arial.ttf'
+                text: str(app.myProfile.displayGender())
+                values: str(app.myProfile.getAllGenders()['0']), str(app.myProfile.getAllGenders()['1'])
             KLabel:
+#1
             KLabel:
                 text: tr._('Physical activity level')
             KSpinner:
@@ -74,3 +77,7 @@
                 text: str(app.myProfile.displayActivityFactor())
                 values: str(app.myProfile.getAllActivityFactors()['1']), str(app.myProfile.getAllActivityFactors()['2']), str(app.myProfile.getAllActivityFactors()['3']), str(app.myProfile.getAllActivityFactors()['4']), str(app.myProfile.getAllActivityFactors()['5']), str(app.myProfile.getAllActivityFactors()['6'])
                 on_text: root.initProfileUpdate('activityFactor')
+            KLabel:
+            KLabel:
+            KLabel:
+

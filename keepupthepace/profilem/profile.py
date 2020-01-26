@@ -65,6 +65,29 @@ class Profile(object):
         '''
         self._registry.append(self)
 
+    def getAllGenders(self):
+        dictOfGenders = {}
+        for genderList in enumandconst.Gender:
+            name = self.displayGender(from_displayGender=genderList)
+            dictOfGenders.update({str(genderList.value): name})
+        return dictOfGenders
+
+    def displayGender(self, **kwargs):
+        '''
+            Display the current gender of the profile
+        '''
+        if ('from_displayGender' in kwargs):
+            g = kwargs['from_displayGender']
+        else:
+            g = self.gender
+        
+        if (g == enumandconst.Gender.FEMALE):
+            return self.femaleSign
+        elif (g == enumandconst.Gender.MALE):
+            return self.maleSign
+        else:
+            return '?'
+
     def getAllActivityFactors(self):
         '''
             Return all the occurences of the Enum ActivityFactor in a dictionary
@@ -558,5 +581,6 @@ if __name__ == "__main__":
     print(myProfile.getAllActivityFactors()['1'])
     print(myProfile.displayActivityFactor())
     print(myProfile.displayActivityFactor(from_getAllActivityFactors=enumandconst.ActivityFactor.VIGOROUSLYACTIVE))
-
+    print(myProfile.getAllGenders())
+    print(myProfile.displayGender(from_getAllGenders=enumandconst.Gender.MALE))
 
