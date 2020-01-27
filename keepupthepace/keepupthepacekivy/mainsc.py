@@ -5,6 +5,7 @@ from kivy.uix.screenmanager import ScreenManager, Screen, FadeTransition
 from kivy.uix.behaviors import FocusBehavior
 from kivy.uix.textinput import TextInput
 from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.dropdown import DropDown
 from kivy.uix.button import Button
 import kivy.properties as properties
@@ -75,7 +76,7 @@ class ProfileManager(Screen):
 class Settings(Screen):
     pass
 
-class Navigation(BoxLayout):
+class Navigation(FloatLayout):
     pass
 
 class KeepUpThepaceScApp(App):

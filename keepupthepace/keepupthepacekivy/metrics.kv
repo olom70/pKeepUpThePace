@@ -3,16 +3,12 @@
 #:include force navigation.kv
 #:import tr __main__.tr
 
-
 <Metrics>:
     BoxLayout:
         orientation: 'vertical'
         canvas:
             Color:
                 rgba: 109/255., 8/255., 57/255., 1
-            Rectangle:
-                pos: self.pos
-                size: self.size
         Navigation:
         GridLayout:
             cols: 2

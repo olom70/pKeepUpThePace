@@ -4,17 +4,15 @@
 #import tr __main__.tr
 
 <Navigation>:
-    orientation: 'horizontal'
+    size_hint: 1, None
     canvas:
         Color:
             rgba: 255/255., 255/255., 255/255., 1
-        Rectangle:
-            pos: self.pos
-            size: self.size
     KNavigationButton:
-        text: 'Next screen'
-        on_release: app.nextscreen()
-
-    KNavigationButton:
+        pos_hint: {'center_x' : 0.25, 'top': 0.9}
         text: 'Previous screen'
         on_release: app.previousscreen()
+    KNavigationButton:
+        pos_hint: {'center_x' : 0.75, 'top': 0.9}
+        text: 'Next screen'
+        on_release: app.nextscreen()
