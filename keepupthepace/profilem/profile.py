@@ -66,6 +66,10 @@ class Profile(object):
         self._registry.append(self)
 
     def getAllGenders(self):
+        '''
+            Return all the occurences of the Enum Gender in a dictionary
+            content of the dictionary : {1 : '♂', 2: '♀' }
+        '''
         dictOfGenders = {}
         for genderList in enumandconst.Gender:
             name = self.displayGender(from_displayGender=genderList)
@@ -91,6 +95,7 @@ class Profile(object):
     def getAllActivityFactors(self):
         '''
             Return all the occurences of the Enum ActivityFactor in a dictionary
+            content of the dictionary : {1: '>', 2: '>>, etc.
         '''
         dictOfActivityFactors = {}
         for ActivityFactorList in enumandconst.ActivityFactor:
