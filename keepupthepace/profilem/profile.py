@@ -50,7 +50,6 @@ class Profile(object):
         # infered
         self.bBMI = None # classic way to calculate it
         self.nBMI = None # new way to calculate it
-        self.bBMR = None
         self.rRMRcal = {}
         self.rRMRml = {}
         self.hHBE = {}
@@ -72,7 +71,7 @@ class Profile(object):
         '''
         dictOfGenders = {}
         for genderList in enumandconst.Gender:
-            name = self.displayGender(from_displayGender=genderList)
+            name = self.displayGender(from_getAllGenders=genderList)
             dictOfGenders.update({str(genderList.value): name})
         return dictOfGenders
 
@@ -80,8 +79,8 @@ class Profile(object):
         '''
             Display the current gender of the profile
         '''
-        if ('from_displayGender' in kwargs):
-            g = kwargs['from_displayGender']
+        if ('from_getAllGenders' in kwargs):
+            g = kwargs['from_getAllGenders']
         else:
             g = self.gender
         
@@ -319,17 +318,22 @@ class Profile(object):
         self.rRMRcal.update({enumandconst.RmrDates.A1990 : rmrtemp})
         self.rRMRml.update({enumandconst.RmrDates.A1990 : self.__computeRMRml(self.rRMRcal.get(enumandconst.RmrDates.A1990))})
 
-    def displayBMR(self):
+    def displayRMR(self):
         '''
-            Trunc the BMR to the nearest integer
+            Trunc the RMR to the nearest integer
+            return the 3 values in a list in this order :
+              - 1918 formula
+              - 1984 formula
+              - 1990 formula
             return 0 if there is not enough values to calculate it
         '''
-        if self.bBMR is not None:
-            truncatedbBMR = math.trunc(self.bBMR)
-            return str(truncatedbBMR)
+        if (len(self.rRMRcal) != 0):
+            rmr1918 = str(math.trunc(self.rRMRcal.get(enumandconst.RmrDates.A1918)))
+            rmr1984 = str(math.trunc(self.rRMRcal.get(enumandconst.RmrDates.A1984)))
+            rmr1990 = str(math.trunc(self.rRMRcal.get(enumandconst.RmrDates.A1990)))
+            return rmr1918, rmr1984, rmr1990
         else:
-            return '0'
-
+            return '0', '0', '0'
 
     def computeRMR(self):
         '''
@@ -366,7 +370,6 @@ class Profile(object):
         else:
             raise ValueError("Profile has to be fully initialized with height, age, metric choice, gender")
 
-        return self.bBMR
 
     def displayHBE(self):
         '''
@@ -378,9 +381,9 @@ class Profile(object):
             return 0 if there is not enough values to calculate it
         '''
         if (len(self.hHBE) != 0):
-            hbe1918 = str(self.hHBE.get(enumandconst.RmrDates.A1918))
-            hbe1984 = str(self.hHBE.get(enumandconst.RmrDates.A1984))
-            hbe1990 = str(self.hHBE.get(enumandconst.RmrDates.A1990))
+            hbe1918 = str(math.trunc(self.hHBE.get(enumandconst.RmrDates.A1918)))
+            hbe1984 = str(math.trunc(self.hHBE.get(enumandconst.RmrDates.A1984)))
+            hbe1990 = str(math.trunc(self.hHBE.get(enumandconst.RmrDates.A1990)))
             return hbe1918, hbe1984, hbe1990
         else:
             return '0', '0', '0'
@@ -588,4 +591,5 @@ if __name__ == "__main__":
     print(myProfile.displayActivityFactor(from_getAllActivityFactors=enumandconst.ActivityFactor.VIGOROUSLYACTIVE))
     print(myProfile.getAllGenders())
     print(myProfile.displayGender(from_getAllGenders=enumandconst.Gender.MALE))
+    print(myProfile.displayRMR())
 

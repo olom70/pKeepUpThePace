@@ -100,8 +100,8 @@ class BmI(Screen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         #self.ids.profile_name.text = str(App.get_running_app().myProfile.profileName)
-        App.get_running_app().kbbmi = App.get_running_app().myProfile.displaybBMI()
-        App.get_running_app().knbmi = App.get_running_app().myProfile.displaynBMI()
+#        App.get_running_app().kbbmi = App.get_running_app().myProfile.displaybBMI()
+#        App.get_running_app().knbmi = App.get_running_app().myProfile.displaynBMI()
 
 class RmR(Screen):
     pass
@@ -133,7 +133,9 @@ class KeepUpThepaceScApp(App):
     # define the properties that will be updated in the user interface
     knbmi = properties.StringProperty('0')
     kbbmi = properties.StringProperty('0')
-    kbmr = properties.StringProperty('0')
+    krmr1918 = properties.StringProperty('0')
+    krmr1984 = properties.StringProperty('0')
+    krmr1990 = properties.StringProperty('0')
     khbe1918 = properties.StringProperty('0')
     khbe1984 = properties.StringProperty('0')
     khbe1990 = properties.StringProperty('0')
@@ -152,7 +154,8 @@ class KeepUpThepaceScApp(App):
         myProfile.heightDecimalPart = 68
         myProfile.metricChoice = enumandconst.MetricChoice.ISO
         myProfile.computeBMI()
-
+    else:
+        myProfile.computeAll()
 
     def build(self):
         '''
@@ -176,12 +179,12 @@ class KeepUpThepaceScApp(App):
         '''
             actions done between the transition from one screen to another
         '''
-        if (self.root.current == 'metrics'):
+        if (self.root.current == 'metrics' or self.root.current == 'welcome'):
             self.myProfile.computeAll()
             persistence.saveprofiles()
             self.kbbmi = self.myProfile.displaybBMI()
             self.knbmi = self.myProfile.displaynBMI()
-            self.kbmr = self.myProfile.displayBMR()
+            self.krmr1918, self.krmr1984, self.krmr1990 = self.myProfile.displayRMR()
             self.khbe1918, self.khbe1984, self.khbe1990 = self.myProfile.displayHBE()
             self.kqfp, self.kefp = self.myProfile.displayFAT()
 
