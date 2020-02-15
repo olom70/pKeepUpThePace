@@ -438,7 +438,7 @@ class Profile(object):
                 and self.exponentialFatPercentage is not None):
             truncatedQFP = math.trunc(self.quadraticFatPercentage)
             truncatedEFP = math.trunc(self.exponentialFatPercentage)
-            return truncatedQFP, truncatedEFP
+            return str(truncatedQFP), str(truncatedEFP)
         else:
             return '0', '0'
 

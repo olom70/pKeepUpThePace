@@ -2,9 +2,9 @@
 #:include force dclasses.kv
 #:include force navigation.kv
 
-#import tr __main__.tr
+#:import tr __main__.tr
 
-<tte>:
+<Fat>:
     BoxLayout:
         orientation: 'vertical'
         canvas:
@@ -12,4 +12,16 @@
                 rgba: 109/255., 8/255., 57/255., 1
         Navigation:
         MainLabel:
-            text: 'tte'
+            text: 'fat'
+        GridLayout:
+            cols: 2
+            KLabel:
+                text: tr._('Quadratic Fat Percentage : ')
+            KLabel:
+                id: bmi_value_old_formula
+                text: str(app.kqfp)
+            KLabel:
+                text: tr._('Exponential Fat Percentage')
+            KLabel:
+                id: bmi_value_new_formula
+                text: str(app.kefp)

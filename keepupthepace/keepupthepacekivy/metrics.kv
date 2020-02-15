@@ -88,4 +88,45 @@
             KLabel:
             KLabel:
             KLabel:
-
+        GridLayout:
+            cols: 6
+            KLabel:
+                text: tr._('Measurement for Body Fat Calculator :' )
+            KLabel:
+            KLabel:
+            KLabel:
+            KLabel:
+            KLabel:
+#1
+            KLabel:
+                text: tr._('Female :')
+            KLabel:
+            KLabel:
+            KLabel:
+            KLabel:
+            KLabel:
+#1
+            KLabel:
+                text: tr._('Triceps (mm) :')
+            KTextInput:
+                input_filter: 'int'
+                id: profile_female_triceps
+                text: str(app.myProfile.triceps)
+                on_text_validate: root.initProfileUpdate('femaletriceps')
+                on_focus: root.on_focus(args[1], 'femaletriceps')
+            KLabel:
+                text: tr._('Suprailium (mm) :')
+            KTextInput:
+                input_filter: 'int'
+                id: profile_female_suprailium
+                text: str(app.myProfile.suprailium)
+                on_text_validate: root.initProfileUpdate('femalesuprailium')
+                on_focus: root.on_focus(args[1], 'femalesuprailium')
+            KLabel:
+                text: tr._('Thigh (mm) :')
+            KTextInput:
+                input_filter: 'int'
+                id: profile_female_thigh
+                text: str(app.myProfile.thigh)
+                on_text_validate: root.initProfileUpdate('femalethigh')
+                on_focus: root.on_focus(args[1], 'femalethigh')
