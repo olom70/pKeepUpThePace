@@ -1,0 +1,18 @@
+#:kivy 1.11.1
+#:include force dclasses.kv
+
+#import tr __main__.tr
+
+<Navigation>:
+    size_hint: 1, None
+    canvas:
+        Color:
+            rgba: 255/255., 255/255., 255/255., 1
+    KNavigationButton:
+        pos_hint: {'center_x' : 0.25, 'top': 0.9}
+        text: 'Previous screen'
+        on_release: app.previousscreen()
+    KNavigationButton:
+        pos_hint: {'center_x' : 0.75, 'top': 0.9}
+        text: 'Next screen'
+        on_release: app.nextscreen()
