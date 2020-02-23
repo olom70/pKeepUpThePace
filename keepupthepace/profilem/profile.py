@@ -320,7 +320,7 @@ class Profile(object):
 
     def displayRMR(self):
         '''
-            Trunc the RMR to the nearest integer
+            Trunc the RMR (kilocalories per day) to the nearest integer
             return the 3 values in a list in this order :
               - 1918 formula
               - 1984 formula
@@ -331,6 +331,23 @@ class Profile(object):
             rmr1918 = str(math.trunc(self.rRMRcal.get(enumandconst.RmrDates.A1918)))
             rmr1984 = str(math.trunc(self.rRMRcal.get(enumandconst.RmrDates.A1984)))
             rmr1990 = str(math.trunc(self.rRMRcal.get(enumandconst.RmrDates.A1990)))
+            return rmr1918, rmr1984, rmr1990
+        else:
+            return '0', '0', '0'
+
+    def displayRMRml(self):
+        '''
+            Round the RMR (ml.kg-1.min-1) to 2 digit
+            return the 3 values in a list in this order :
+              - 1918 formula
+              - 1984 formula
+              - 1990 formula
+            return 0 if there is not enough values to calculate it
+        '''
+        if (len(self.rRMRml) != 0):
+            rmr1918 = str(round(self.rRMRml.get(enumandconst.RmrDates.A1918), 2))
+            rmr1984 = str(round(self.rRMRml.get(enumandconst.RmrDates.A1984), 2))
+            rmr1990 = str(round(self.rRMRml.get(enumandconst.RmrDates.A1990), 2))
             return rmr1918, rmr1984, rmr1990
         else:
             return '0', '0', '0'
