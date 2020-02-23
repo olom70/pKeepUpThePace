@@ -101,6 +101,21 @@ class Metrics(Screen):
             if (valueToSave >= 1):
                 kivy.app.App.get_running_app().myProfile.thigh = valueToSave
 
+        if (metricToSave == 'maletriceps'):
+            valueToSave = int(self.ids.profile_male_triceps.text)
+            if (valueToSave >= 1):
+                kivy.app.App.get_running_app().myProfile.triceps = valueToSave
+
+        if (metricToSave == 'maleabdomen'):
+            valueToSave = int(self.ids.profile_male_abdomen.text)
+            if (valueToSave >= 1):
+                kivy.app.App.get_running_app().myProfile.abdomen = valueToSave
+
+        if (metricToSave == 'malethigh'):
+            valueToSave = int(self.ids.profile_male_thigh.text)
+            if (valueToSave >= 1):
+                kivy.app.App.get_running_app().myProfile.thigh = valueToSave
+
     def on_focus(self, focused, metricToSave):
         '''
             Triggered by TextInput.
@@ -151,6 +166,9 @@ class KeepUpThepaceScApp(App):
     krmr1918 = properties.StringProperty('0')
     krmr1984 = properties.StringProperty('0')
     krmr1990 = properties.StringProperty('0')
+    krmrml1918 = properties.StringProperty('0')
+    krmrml1984 = properties.StringProperty('0')
+    krmrml1990 = properties.StringProperty('0')
     khbe1918 = properties.StringProperty('0')
     khbe1984 = properties.StringProperty('0')
     khbe1990 = properties.StringProperty('0')
@@ -200,6 +218,7 @@ class KeepUpThepaceScApp(App):
             self.kbbmi = self.myProfile.displaybBMI()
             self.knbmi = self.myProfile.displaynBMI()
             self.krmr1918, self.krmr1984, self.krmr1990 = self.myProfile.displayRMR()
+            self.krmrml1918, self.krmrml1984, self.krmrml1990 = self.myProfile.displayRMRml()
             self.khbe1918, self.khbe1984, self.khbe1990 = self.myProfile.displayHBE()
             self.kqfp, self.kefp = self.myProfile.displayFAT()
 
