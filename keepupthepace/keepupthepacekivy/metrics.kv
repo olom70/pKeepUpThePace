@@ -130,3 +130,36 @@
                 text: str(app.myProfile.thigh)
                 on_text_validate: root.initProfileUpdate('femalethigh')
                 on_focus: root.on_focus(args[1], 'femalethigh')
+#1
+            KLabel:
+                text: tr._('Male :')
+            KLabel:
+            KLabel:
+            KLabel:
+            KLabel:
+            KLabel:
+#1
+            KLabel:
+                text: tr._('Triceps (mm) :')
+            KTextInput:
+                input_filter: 'int'
+                id: profile_male_triceps
+                text: str(app.myProfile.triceps)
+                on_text_validate: root.initProfileUpdate('maletriceps')
+                on_focus: root.on_focus(args[1], 'maletriceps')
+            KLabel:
+                text: tr._('Abdomen (mm) :')
+            KTextInput:
+                input_filter: 'int'
+                id: profile_male_abdomen
+                text: str(app.myProfile.abdomen)
+                on_text_validate: root.initProfileUpdate('maleabdomen')
+                on_focus: root.on_focus(args[1], 'maleabdomen')
+            KLabel:
+                text: tr._('Thigh (mm) :')
+            KTextInput:
+                input_filter: 'int'
+                id: profile_male_thigh
+                text: str(app.myProfile.thigh)
+                on_text_validate: root.initProfileUpdate('malethigh')
+                on_focus: root.on_focus(args[1], 'malethigh')

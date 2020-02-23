@@ -101,6 +101,21 @@ class Metrics(Screen):
             if (valueToSave >= 1):
                 kivy.app.App.get_running_app().myProfile.thigh = valueToSave
 
+        if (metricToSave == 'maletriceps'):
+            valueToSave = int(self.ids.profile_male_triceps.text)
+            if (valueToSave >= 1):
+                kivy.app.App.get_running_app().myProfile.triceps = valueToSave
+
+        if (metricToSave == 'maleabdomen'):
+            valueToSave = int(self.ids.profile_male_abdomen.text)
+            if (valueToSave >= 1):
+                kivy.app.App.get_running_app().myProfile.abdomen = valueToSave
+
+        if (metricToSave == 'malethigh'):
+            valueToSave = int(self.ids.profile_male_thigh.text)
+            if (valueToSave >= 1):
+                kivy.app.App.get_running_app().myProfile.thigh = valueToSave
+
     def on_focus(self, focused, metricToSave):
         '''
             Triggered by TextInput.
