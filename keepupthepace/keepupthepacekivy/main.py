@@ -17,6 +17,27 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../.
 import keepupthepace.profilem.profile as profile
 import keepupthepace.profilem.enumandconst as enumandconst
 import keepupthepace.persistence.profilepersistence as persistence
+import keepupthepace.compendium.c01bicycling as c01
+import keepupthepace.compendium.c02conditioningexercise as c02
+import keepupthepace.compendium.c03dancing as c03
+import keepupthepace.compendium.c04fishinghunting as c04
+import keepupthepace.compendium.c05homeactivity as c05
+import keepupthepace.compendium.c06homerepair as c06
+import keepupthepace.compendium.c07inactivity as c07
+import keepupthepace.compendium.c08lawngarden as c08
+import keepupthepace.compendium.c09miscellaneous as c09
+import keepupthepace.compendium.c10musicplaying as c10
+import keepupthepace.compendium.c11occupation as c11
+import keepupthepace.compendium.c12running as c12
+import keepupthepace.compendium.c13selfcare as c13
+import keepupthepace.compendium.c14sexualactivity as c14
+import keepupthepace.compendium.c15sports as c15
+import keepupthepace.compendium.c16transportation as c16
+import keepupthepace.compendium.c17walking as c17
+import keepupthepace.compendium.c18wateractivities as c18
+import keepupthepace.compendium.c19winteractivities as c19
+import keepupthepace.compendium.c20religiousactivities as c20
+import keepupthepace.compendium.c21valunteeractivities as c21
 
 tr = lang.Lang("en")
 
@@ -136,6 +157,9 @@ class BmI(Screen):
 class RmR(Screen):
     pass
 
+class ListMetTables(Screen):
+    pass
+
 class Fat(Screen):
     pass
 
@@ -190,6 +214,29 @@ class KeepUpThepaceScApp(App):
     else:
         myProfile.computeAll()
 
+    # initialize all the MET tables
+    bicycling = c01.Bicycling
+    conditionningExercises = c02.ConditionningExercises
+    dancing = c03.Dancing
+    fishingHunting = c04.FishingHunting
+    homeActivity = c05.HomeActivity
+    homeRepair = c06.HomeRepair
+    inactivity = c07.Inactivity
+    lawnGarden = c08.LawnGarden
+    miscellaneous = c09.Miscellaneous
+    musicPlaying = c10.MusicPlaying
+    occupation = c11.Occupation
+    running = c12.Running
+    selfcare = c13.SelfCare
+    sexualActivity = c14.SexualActivity
+    sports = c15.Sports
+    transportation = c16.Transportation
+    walking = c17.Walking
+    waterActivities = c18.WaterActivities
+    winterActivites = c19.WinterActivities
+    religiousActivities = c20.ReligiousActivities
+    volunteeractivities = c21.VolunteerActivities
+
     def build(self):
         '''
             build the screen manager of the app
@@ -200,6 +247,7 @@ class KeepUpThepaceScApp(App):
         root.add_widget(Metrics(name='metrics'))
         root.add_widget(BmI(name='bmi'))
         root.add_widget(RmR(name='rmr'))
+        root.add_widget(ListMetTables(name='listmettables'))
         root.add_widget(Fat(name='fat'))
         root.add_widget(ProfileManager(name='profilemanager'))
         root.add_widget(Settings(name='settings'))
