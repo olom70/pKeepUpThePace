@@ -24,7 +24,7 @@ class Compendium(abc.ABC):
         try:
             return self.metValue[code]
         except (KeyError):
-            raise ValueError("The met code :  "+code+" is unknown.")
+            raise ValueError("The met code :  "+str(code)+" is unknown.")
             
         
         
