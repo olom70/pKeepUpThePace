@@ -237,27 +237,27 @@ class KeepUpThepaceScApp(App):
     religiousActivities = c20.ReligiousActivities
     volunteeractivities = c21.VolunteerActivities
 
-    listOfMetTables = [tr._('Bicycling'), 
-            tr._('Conditionning Exercises'),
-            tr._('Dancing'),
-            tr._('Fishing & Hunting'),
-            tr._('Home Activity'),
-            tr._('Home Repair'),
-            tr._('Inactivity'),
-            tr._('Lawn Garden'),
-            tr._('Miscellaneous'),
-            tr._('Music Playing'),
-            tr._('Occupation'),
-            tr._('Runing'),
-            tr._('Self Care'),
-            tr._('Sexual Activity'),
-            tr._('Sports'),
-            tr._('Transportation'),
-            tr._('Walking'),
-            tr._('Water Activities'),
-            tr._('Winter Activities'),
-            tr._('Religious Activities'),
-            tr._('Volunteer Activities')]
+    listOfMetTables = [tr._('01-Bicycling'), 
+            tr._('02-Conditionning Exercises'),
+            tr._('03-Dancing'),
+            tr._('04-Fishing & Hunting'),
+            tr._('05-Home Activity'),
+            tr._('06-Home Repair'),
+            tr._('07-Inactivity'),
+            tr._('08-Lawn Garden'),
+            tr._('09-Miscellaneous'),
+            tr._('10-Music Playing'),
+            tr._('11-Occupation'),
+            tr._('12-Runing'),
+            tr._('13-Self Care'),
+            tr._('14-Sexual Activity'),
+            tr._('15-Sports'),
+            tr._('16-Transportation'),
+            tr._('17-Walking'),
+            tr._('18-Water Activities'),
+            tr._('19-Winter Activities'),
+            tr._('20-Religious Activities'),
+            tr._('21-Volunteer Activities')]
 
     def build(self):
         '''
