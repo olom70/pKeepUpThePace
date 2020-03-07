@@ -237,6 +237,28 @@ class KeepUpThepaceScApp(App):
     religiousActivities = c20.ReligiousActivities
     volunteeractivities = c21.VolunteerActivities
 
+    listOfMetTables = [tr._('Bicycling'), 
+            tr._('Conditionning Exercises'),
+            tr._('Dancing'),
+            tr._('Fishing & Hunting'),
+            tr._('Home Activity'),
+            tr._('Home Repair'),
+            tr._('Inactivity'),
+            tr._('Lawn Garden'),
+            tr._('Miscellaneous'),
+            tr._('Music Playing'),
+            tr._('Occupation'),
+            tr._('Runing'),
+            tr._('Self Care'),
+            tr._('Sexual Activity'),
+            tr._('Sports'),
+            tr._('Transportation'),
+            tr._('Walking'),
+            tr._('Water Activities'),
+            tr._('Winter Activities'),
+            tr._('Religious Activities'),
+            tr._('Volunteer Activities')]
+
     def build(self):
         '''
             build the screen manager of the app
