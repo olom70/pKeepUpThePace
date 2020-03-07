@@ -6,6 +6,8 @@ import keepupthepace.compendium.abstractcompendium
 class ConditionningExercises(keepupthepace.compendium.abstractcompendium.Compendium):
 
     def __init__(self):
+        super().__init__()
+        
         self.metValue  = {2001 : 2.3
         ,2003 : 3.8
         ,2005 : 7.2
@@ -61,6 +63,8 @@ class ConditionningExercises(keepupthepace.compendium.abstractcompendium.Compend
         ,2200 : 5.3
         ,2205 : 6.8}
 
+        # Unpacking with * works with any object that is iterable and, since dictionaries return their keys when iterated through, you can easily create a list by using it within a list literal.
+        self.ckeys = [*self.metValue] # another option : list(self.metValue.keys())
 
         self.metDescription  = {2001 : "activity promoting video game (e.g., Wii Fit), light effort (e.g., balance, yoga)"
         ,2003 : "activity promoting video game (e.g., Wii Fit), moderate effort (e.g., aerobic, resistance)"
@@ -183,3 +187,5 @@ if __name__ == "__main__":
     b = ConditionningExercises()
     b.printValues()
     print(b.getMetValue(2205))
+    for l in b:
+        print(l)

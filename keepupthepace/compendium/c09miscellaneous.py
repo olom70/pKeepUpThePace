@@ -6,6 +6,8 @@ import keepupthepace.compendium.abstractcompendium
 class Miscellaneous(keepupthepace.compendium.abstractcompendium.Compendium):
 
     def __init__(self):
+        super().__init__()
+
         self.metValue  = {9000 : 1.5
             ,9005 : 2.5
             ,9010 : 1.5 
@@ -34,6 +36,8 @@ class Miscellaneous(keepupthepace.compendium.abstractcompendium.Compendium):
             ,9110 : 2.5 
             ,9115 : 1.5}
 
+        # Unpacking with * works with any object that is iterable and, since dictionaries return their keys when iterated through, you can easily create a list by using it within a list literal.
+        self.ckeys = [*self.metValue] # another option : list(self.metValue.keys())
 
         self.metDescription  = {9000 : "board game playing, sitting"
             ,9005 : "casino gambling, standing"
@@ -102,3 +106,5 @@ if __name__ == "__main__":
     b = Miscellaneous()
     b.printValues()
     print(b.getMetValue(9070))
+    for l in b:
+        print(l)

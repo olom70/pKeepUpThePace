@@ -6,6 +6,8 @@ import keepupthepace.compendium.abstractcompendium
 class LawnGarden(keepupthepace.compendium.abstractcompendium.Compendium):
 
     def __init__(self):
+        super().__init__()
+
         self.metValue  = {8009 : 3.3
             ,8010 : 5.5 
             ,8019 : 4.5
@@ -60,6 +62,8 @@ class LawnGarden(keepupthepace.compendium.abstractcompendium.Compendium):
             ,8261 : 4.0
             ,8262 : 6.0}
 
+        # Unpacking with * works with any object that is iterable and, since dictionaries return their keys when iterated through, you can easily create a list by using it within a list literal.
+        self.ckeys = [*self.metValue] # another option : list(self.metValue.keys())
 
         self.metDescription  = {8009 : "carrying, loading or stacking wood, loading/unloading or carrying lumber, light-to-moderate effort"
             ,8010 : "carrying, loading or stacking wood, loading/unloading or carrying lumber"
@@ -180,3 +184,5 @@ if __name__ == "__main__":
     b = LawnGarden()
     b.printValues()
     print(b.getMetValue(8262))
+    for l in b:
+        print(l)

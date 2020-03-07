@@ -6,6 +6,8 @@ import keepupthepace.compendium.abstractcompendium
 class WaterActivities(keepupthepace.compendium.abstractcompendium.Compendium):
 
     def __init__(self):
+        super().__init__()
+
         self.metValue  = {18010 : 2.5 
             ,18012 : 1.3
             ,18020 : 4.0 
@@ -59,7 +61,8 @@ class WaterActivities(keepupthepace.compendium.abstractcompendium.Compendium):
             ,18385 : 11.0
             ,18390 : 13.5}
 
-
+        # Unpacking with * works with any object that is iterable and, since dictionaries return their keys when iterated through, you can easily create a list by using it within a list literal.
+        self.ckeys = [*self.metValue] # another option : list(self.metValue.keys())
 
         self.metDescription  = {18010 : "boating, power, driving"
             ,18012 : "boating, power, passenger, light"
@@ -180,3 +183,5 @@ if __name__ == "__main__":
     b = WaterActivities()
     b.printValues()
     print(b.getMetValue(18012))
+    for l in b:
+        print(l)

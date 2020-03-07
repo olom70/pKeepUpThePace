@@ -6,9 +6,14 @@ import keepupthepace.compendium.abstractcompendium
 class SexualActivity(keepupthepace.compendium.abstractcompendium.Compendium):
 
     def __init__(self):
+        super().__init__()
+
         self.metValue  = {14010 : 2.8
             ,14020 : 1.8
             ,14030 : 1.3 }
+
+        # Unpacking with * works with any object that is iterable and, since dictionaries return their keys when iterated through, you can easily create a list by using it within a list literal.
+        self.ckeys = [*self.metValue] # another option : list(self.metValue.keys())
 
         self.metDescription  = {14010 : "active, vigorous effort"
             ,14020 : "general, moderate effort"
@@ -29,3 +34,5 @@ if __name__ == "__main__":
     b = SexualActivity()
     b.printValues()
     print(b.getMetValue(14020))
+    for l in b:
+        print(l)

@@ -6,6 +6,8 @@ import keepupthepace.compendium.abstractcompendium
 class SelfCare(keepupthepace.compendium.abstractcompendium.Compendium):
 
     def __init__(self):
+        super().__init__()
+
         self.metValue  = {13000 : 2.3 
             ,13009 : 1.8 
             ,13010 : 1.5 
@@ -18,6 +20,8 @@ class SelfCare(keepupthepace.compendium.abstractcompendium.Compendium):
             ,13046 : 1.3 
             ,13050 : 2.0 }
 
+        # Unpacking with * works with any object that is iterable and, since dictionaries return their keys when iterated through, you can easily create a list by using it within a list literal.
+        self.ckeys = [*self.metValue] # another option : list(self.metValue.keys())
 
         self.metDescription  = {13000 : "getting ready for bed, general, standing"
             ,13009 : "sitting on toilet, eliminating while standing or squating"
@@ -54,3 +58,5 @@ if __name__ == "__main__":
     b = SelfCare()
     b.printValues()
     print(b.getMetValue(13009))
+    for l in b:
+        print(l)

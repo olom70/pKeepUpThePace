@@ -6,6 +6,8 @@ import keepupthepace.compendium.abstractcompendium
 class Sports(keepupthepace.compendium.abstractcompendium.Compendium):
 
     def __init__(self):
+        super().__init__()
+
         self.metValue  = {15000 : 5.5
             ,15010 : 4.3
             ,15020 : 7.0 
@@ -128,6 +130,8 @@ class Sports(keepupthepace.compendium.abstractcompendium.Compendium):
             ,15733 : 6.0 
             ,15734 : 10.0 }
 
+        # Unpacking with * works with any object that is iterable and, since dictionaries return their keys when iterated through, you can easily create a list by using it within a list literal.
+        self.ckeys = [*self.metValue] # another option : list(self.metValue.keys())
 
         self.metDescription  = {15000 : "Alaska Native Games, Eskimo Olympics, general"
             ,15010 : "archery, non-hunting"
@@ -384,3 +388,5 @@ if __name__ == "__main__":
     b = Sports()
     b.printValues()
     print(b.getMetValue(15610))
+    for l in b:
+        print(l)

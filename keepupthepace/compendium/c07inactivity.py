@@ -6,6 +6,8 @@ import keepupthepace.compendium.abstractcompendium
 class Inactivity(keepupthepace.compendium.abstractcompendium.Compendium):
 
     def __init__(self):
+        super().__init__()
+
         self.metValue  = {7010 : 1.0 
             ,7011 : 1.3 
             ,7020 : 1.3 
@@ -23,6 +25,8 @@ class Inactivity(keepupthepace.compendium.abstractcompendium.Compendium):
             ,7070 : 1.3 
             ,7075 : 1.0}
 
+        # Unpacking with * works with any object that is iterable and, since dictionaries return their keys when iterated through, you can easily create a list by using it within a list literal.
+        self.ckeys = [*self.metValue] # another option : list(self.metValue.keys())
 
         self.metDescription  = {7010 : "lying quietly and watching television"
             ,7011 : "lying quietly, doing nothing, lying in bed awake, listening to music (not talking or reading)"
@@ -68,4 +72,6 @@ class Inactivity(keepupthepace.compendium.abstractcompendium.Compendium):
 if __name__ == "__main__":
     b = Inactivity()
     b.printValues()
-    print(b.getMetValue(7076))
+    print(b.getMetValue(7075))
+    for l in b:
+        print(l)

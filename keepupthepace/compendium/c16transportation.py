@@ -6,6 +6,8 @@ import keepupthepace.compendium.abstractcompendium
 class Transportation(keepupthepace.compendium.abstractcompendium.Compendium):
 
     def __init__(self):
+        super().__init__()
+
         self.metValue  = {16010 : 2.5 
             ,16015 : 1.3 
             ,16016 : 1.3 
@@ -16,7 +18,8 @@ class Transportation(keepupthepace.compendium.abstractcompendium.Compendium):
             ,16050 : 2.5
             ,16060 : 3.5}
 
-
+        # Unpacking with * works with any object that is iterable and, since dictionaries return their keys when iterated through, you can easily create a list by using it within a list literal.
+        self.ckeys = [*self.metValue] # another option : list(self.metValue.keys())
 
         self.metDescription  = {16010 : "automobile or light truck (not a semi) driving"
             ,16015 : "riding in a car or truck"
@@ -49,3 +52,5 @@ if __name__ == "__main__":
     b = Transportation()
     b.printValues()
     print(b.getMetValue(16050))
+    for l in b:
+        print(l)

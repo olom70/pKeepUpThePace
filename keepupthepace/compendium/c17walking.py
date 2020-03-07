@@ -6,6 +6,8 @@ import keepupthepace.compendium.abstractcompendium
 class Walking(keepupthepace.compendium.abstractcompendium.Compendium):
 
     def __init__(self):
+        super().__init__()
+
         self.metValue  = {17010 : 7.0 
             ,17012 : 7.8
             ,17020 : 5.0
@@ -63,7 +65,8 @@ class Walking(keepupthepace.compendium.abstractcompendium.Compendium):
             ,17320 : 6.0
             ,17325 : 8.0}
 
-
+        # Unpacking with * works with any object that is iterable and, since dictionaries return their keys when iterated through, you can easily create a list by using it within a list literal.
+        self.ckeys = [*self.metValue] # another option : list(self.metValue.keys())
 
         self.metDescription  = {17010 : "backpacking (Taylor Code 050)"
             ,17012 : "backpacking, hiking or organized walking with a daypack"
@@ -191,3 +194,5 @@ if __name__ == "__main__":
     b = Walking()
     b.printValues()
     print(b.getMetValue(17140))
+    for l in b:
+        print(l)

@@ -6,6 +6,8 @@ import keepupthepace.compendium.abstractcompendium
 class ReligiousActivities(keepupthepace.compendium.abstractcompendium.Compendium):
 
     def __init__(self):
+        super().__init__()
+
         self.metValue  = {20000 : 1.3
             ,20001 : 2.0
             ,20005 : 1.8
@@ -31,6 +33,8 @@ class ReligiousActivities(keepupthepace.compendium.abstractcompendium.Compendium
             ,20095 : 4.5
             ,20100 : 1.3 }
 
+        # Unpacking with * works with any object that is iterable and, since dictionaries return their keys when iterated through, you can easily create a list by using it within a list literal.
+        self.ckeys = [*self.metValue] # another option : list(self.metValue.keys())
 
         self.metDescription  = {20000 : "sitting in church, in service, attending a ceremony, sitting quietly"
             ,20001 : "sitting, playing an instrument at church"
@@ -95,3 +99,5 @@ if __name__ == "__main__":
     b = ReligiousActivities()
     b.printValues()
     print(b.getMetValue(20095))
+    for l in b:
+        print(l)
