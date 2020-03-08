@@ -4,6 +4,8 @@
 # Dynamc Classes of all the widgets that are spread in the app but with the same layout
 #
 <KLabel@Label>:
+    font_size: '15sp'
+    padding: ('10dp', '10dp')
     size: self.texture_size
     color: 0.2,0.8,0.5,1
 
@@ -12,6 +14,21 @@
     size: self.texture_size
 
 <KTextInput@TextInput>:
-    size_hint_max: (200, 30)
-    size_hint_min: (150, 20)
+    font_size: '15sp'
+    size_hint_max: ('200dp', '30dp')
+    size_hint_min: ('150dp', '20dp')
     multiline: False
+
+<KNavigationButton@Button>:
+    size_hint: None, None
+    pos_hint: {'right': 1}
+    font_size: '20sp'
+    padding: ('10dp', '10dp')
+    size: self.texture_size
+
+<KSpinner@Spinner>:
+    size_hint: .2, .2
+    bold: True
+    sync_height: True
+    padding: ('10dp', '10dp')
+    size: self.texture_size

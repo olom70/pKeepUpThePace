@@ -3,8 +3,8 @@ from enum import Enum
 class ActivityFactor(Enum):
     SEDENTARY = 1
     LIGHTLYACTIVE = 2
-    ACTIVE = 3
-    MODERATELYACTIVE = 4
+    MODERATELYACTIVE = 3
+    ACTIVE = 4
     VIGOROUS = 5
     VIGOROUSLYACTIVE = 6
 

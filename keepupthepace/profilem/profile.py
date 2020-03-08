@@ -50,7 +50,6 @@ class Profile(object):
         # infered
         self.bBMI = None # classic way to calculate it
         self.nBMI = None # new way to calculate it
-        self.bBMR = None
         self.rRMRcal = {}
         self.rRMRml = {}
         self.hHBE = {}
@@ -59,12 +58,74 @@ class Profile(object):
         self.quadraticFatPercentage = None
         self.exponentialFatPercentage = None
 
-
     def addToRegistry(self):
         '''
             populate the registry when a profile is loaded from the shelf
         '''
         self._registry.append(self)
+
+    def getAllGenders(self):
+        '''
+            Return all the occurences of the Enum Gender in a dictionary
+            content of the dictionary : {1 : '♂', 2: '♀' }
+        '''
+        dictOfGenders = {}
+        for genderList in enumandconst.Gender:
+            name = self.displayGender(from_getAllGenders=genderList)
+            dictOfGenders.update({str(genderList.value): name})
+        return dictOfGenders
+
+    def displayGender(self, **kwargs):
+        '''
+            Display the current gender of the profile
+        '''
+        if ('from_getAllGenders' in kwargs):
+            g = kwargs['from_getAllGenders']
+        else:
+            g = self.gender
+        
+        if (g == enumandconst.Gender.FEMALE):
+            return self.femaleSign
+        elif (g == enumandconst.Gender.MALE):
+            return self.maleSign
+        else:
+            return '?'
+
+    def getAllActivityFactors(self):
+        '''
+            Return all the occurences of the Enum ActivityFactor in a dictionary
+            content of the dictionary : {1: '>', 2: '>>, etc.
+        '''
+        dictOfActivityFactors = {}
+        for ActivityFactorList in enumandconst.ActivityFactor:
+            name = self.displayActivityFactor(from_getAllActivityFactors=ActivityFactorList)
+            dictOfActivityFactors.update({str(ActivityFactorList.value): name})
+        return dictOfActivityFactors
+
+    def displayActivityFactor(self, **kwargs ):
+        '''
+            display the current activity factor on a scale going from > to >>>>>>
+        '''
+        if ('from_getAllActivityFactors' in kwargs):
+            af = kwargs['from_getAllActivityFactors']
+        else:
+            af = self.activityFactor
+
+        if (af == enumandconst.ActivityFactor.SEDENTARY):
+            return '>'
+        elif (af == enumandconst.ActivityFactor.LIGHTLYACTIVE):
+            return '>>'
+        elif (af == enumandconst.ActivityFactor.MODERATELYACTIVE):
+            return '>>>'
+        elif (af == enumandconst.ActivityFactor.ACTIVE):
+            return '>>>>'
+        elif (af == enumandconst.ActivityFactor.VIGOROUS):
+            return '>>>>>'
+        elif (af == enumandconst.ActivityFactor.VIGOROUSLYACTIVE):
+            return '>>>>>>'
+        else:
+            return '?'
+
 
     def computeWeigth(self):
         '''
@@ -100,23 +161,25 @@ class Profile(object):
     def displaynBMI(self):
         '''
             Trunc the new BMI to the nearest integer
+            return 0 if there is not enough values to calculate it
         '''
         if self.nBMI is not None:
             truncatednBMI = math.trunc(self.nBMI)
-            return truncatednBMI
+            return str(truncatednBMI)
         else:
-            raise ValueError("In order to display nBMI, it needs initialization first")
+            return '0'
 
     
     def displaybBMI(self):
         '''
             Trunc the classic BMI to the nearest integer
+            return 0 if there is not enough values to calculate it
         '''
         if self.bBMI is not None:
             truncatedbBMI = math.trunc(self.bBMI)
-            return truncatedbBMI
+            return str(truncatedbBMI)
         else:
-            raise ValueError("In order to display bBMI, it needs initialization first")
+            return '0'
 
 
     def computeBMI(self):
@@ -255,6 +318,39 @@ class Profile(object):
         self.rRMRcal.update({enumandconst.RmrDates.A1990 : rmrtemp})
         self.rRMRml.update({enumandconst.RmrDates.A1990 : self.__computeRMRml(self.rRMRcal.get(enumandconst.RmrDates.A1990))})
 
+    def displayRMR(self):
+        '''
+            Trunc the RMR (kilocalories per day) to the nearest integer
+            return the 3 values in a list in this order :
+              - 1918 formula
+              - 1984 formula
+              - 1990 formula
+            return 0 if there is not enough values to calculate it
+        '''
+        if (len(self.rRMRcal) != 0):
+            rmr1918 = str(math.trunc(self.rRMRcal.get(enumandconst.RmrDates.A1918)))
+            rmr1984 = str(math.trunc(self.rRMRcal.get(enumandconst.RmrDates.A1984)))
+            rmr1990 = str(math.trunc(self.rRMRcal.get(enumandconst.RmrDates.A1990)))
+            return rmr1918, rmr1984, rmr1990
+        else:
+            return '0', '0', '0'
+
+    def displayRMRml(self):
+        '''
+            Round the RMR (ml.kg-1.min-1) to 2 digit
+            return the 3 values in a list in this order :
+              - 1918 formula
+              - 1984 formula
+              - 1990 formula
+            return 0 if there is not enough values to calculate it
+        '''
+        if (len(self.rRMRml) != 0):
+            rmr1918 = str(round(self.rRMRml.get(enumandconst.RmrDates.A1918), 2))
+            rmr1984 = str(round(self.rRMRml.get(enumandconst.RmrDates.A1984), 2))
+            rmr1990 = str(round(self.rRMRml.get(enumandconst.RmrDates.A1990), 2))
+            return rmr1918, rmr1984, rmr1990
+        else:
+            return '0', '0', '0'
 
     def computeRMR(self):
         '''
@@ -291,7 +387,24 @@ class Profile(object):
         else:
             raise ValueError("Profile has to be fully initialized with height, age, metric choice, gender")
 
-        return self.bBMR
+
+    def displayHBE(self):
+        '''
+            Trunc the HBE to the nearest integer
+            return the 3 values in a list in this order :
+              - 1918 formula
+              - 1984 formula
+              - 1990 formula
+            return 0 if there is not enough values to calculate it
+        '''
+        if (len(self.hHBE) != 0):
+            hbe1918 = str(math.trunc(self.hHBE.get(enumandconst.RmrDates.A1918)))
+            hbe1984 = str(math.trunc(self.hHBE.get(enumandconst.RmrDates.A1984)))
+            hbe1990 = str(math.trunc(self.hHBE.get(enumandconst.RmrDates.A1990)))
+            return hbe1918, hbe1984, hbe1990
+        else:
+            return '0', '0', '0'
+
 
     def computeHBE(self):
         '''
@@ -329,6 +442,22 @@ class Profile(object):
                 raise ValueError("Unexpected activity factor. A new value have been added and is yet to handle")
         else:
             raise ValueError("The computation of HBR needs these values initialised : Activity Factor and RMR")
+
+    def displayFAT(self):
+        '''
+            Trunc the fat percentage to the nearest integer
+            return in a list the results il a list in this order :
+            - quadratic formula
+            - exponential formula
+            return 0 if there is not enough values to calculate it
+        '''
+        if (self.quadraticFatPercentage is not None
+                and self.exponentialFatPercentage is not None):
+            truncatedQFP = math.trunc(self.quadraticFatPercentage)
+            truncatedEFP = math.trunc(self.exponentialFatPercentage)
+            return str(truncatedQFP), str(truncatedEFP)
+        else:
+            return '0', '0'
 
     def __computeFatPercentage(self):
         '''
@@ -423,6 +552,28 @@ class Profile(object):
                 raise ValueError("computeFat : a Gender value has been added and is yet to handle")
         else:
             raise ValueError("computeFAT : Initialise Gender first")
+    
+    def computeAll(self):
+        '''
+            compute all the values from the metrics entered.
+        '''
+        try:
+            self.computeBMI()
+        except ValueError:
+            pass
+        try:
+            self.computeRMR()
+        except ValueError:
+            pass
+        try:
+            self.computeHBE()
+        except ValueError:
+            pass
+        try:
+            self.computeFAT()
+        except ValueError:
+            pass
+    
 
 if __name__ == "__main__":
     myProfile = Profile('clode')
@@ -451,4 +602,11 @@ if __name__ == "__main__":
     print(myProfile.exponentialBodyDensity)
     print(myProfile.quadraticFatPercentage)
     print(myProfile.id)
+    print(myProfile.getAllActivityFactors())
+    print(myProfile.getAllActivityFactors()['1'])
+    print(myProfile.displayActivityFactor())
+    print(myProfile.displayActivityFactor(from_getAllActivityFactors=enumandconst.ActivityFactor.VIGOROUSLYACTIVE))
+    print(myProfile.getAllGenders())
+    print(myProfile.displayGender(from_getAllGenders=enumandconst.Gender.MALE))
+    print(myProfile.displayRMR())
 

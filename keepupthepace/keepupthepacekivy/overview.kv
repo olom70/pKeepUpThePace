@@ -1,0 +1,18 @@
+#:kivy 1.11.1
+#:include force dclasses.kv
+#:include force navigation.kv
+
+#import tr __main__.tr
+
+<Overview>:
+    BoxLayout:
+        orientation: 'vertical'
+        canvas:
+            Color:
+                rgba: 109/255., 8/255., 57/255., 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        Navigation:
+        MainLabel:
+            text: 'overview'

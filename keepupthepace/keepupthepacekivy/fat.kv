@@ -1,21 +1,27 @@
 #:kivy 1.11.1
 #:include force dclasses.kv
 #:include force navigation.kv
+
 #:import tr __main__.tr
 
-<BmI>:
+<Fat>:
     BoxLayout:
         orientation: 'vertical'
+        canvas:
+            Color:
+                rgba: 109/255., 8/255., 57/255., 1
         Navigation:
+        MainLabel:
+            text: 'fat'
         GridLayout:
             cols: 2
             KLabel:
-                text: tr._('BMI (old formula) : ')
+                text: tr._('Quadratic Fat Percentage : ')
             KLabel:
                 id: bmi_value_old_formula
-                text: str(app.kbbmi)
+                text: str(app.kqfp)
             KLabel:
-                text: tr._('BMI (new formula)')
+                text: tr._('Exponential Fat Percentage')
             KLabel:
                 id: bmi_value_new_formula
-                text: str(app.knbmi)
+                text: str(app.kefp)

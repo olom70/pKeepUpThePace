@@ -1,3 +1,4 @@
+
 .vscode/launch.json
 keepupthepace/__pycache__/__init__.cpython-37.pyc
 keepupthepace/__pycache__/__init__.cpython-38.pyc
@@ -1065,7 +1066,10 @@ tests/__pycache__/context.cpython-37.pyc
 keepupthepace/kivy-gettext-example
 tests/__pycache__/context.cpython-37.pyc
 tests/__pycache__/test_profile.cpython-37-pytest-5.3.0.pyc
+<<<<<<< HEAD
 keepupthepace/kivy-gettext-example
+=======
+>>>>>>> 2a88389eba53cf9aa2eccf1fb4787b4bd0b36336
 keepupthepace/compendium/__pycache__/__init__.cpython-37.pyc
 keepupthepace/compendium/__pycache__/abstractcompendium.cpython-37.pyc
 keepupthepace/compendium/__pycache__/c01bicycling.cpython-37.pyc
@@ -1089,6 +1093,13 @@ keepupthepace/compendium/__pycache__/c18wateractivities.cpython-37.pyc
 keepupthepace/compendium/__pycache__/c19winteractivities.cpython-37.pyc
 keepupthepace/compendium/__pycache__/c20religiousactivities.cpython-37.pyc
 keepupthepace/compendium/__pycache__/c21valunteeractivities.cpython-37.pyc
+<<<<<<< HEAD
+=======
+keepupthepace/profilem/__pycache__/profile.cpython-37.pyc
+keepupthepace/profilem/__pycache__/profile.cpython-37.pyc
+keepupthepace/profilem/__pycache__/profile.cpython-37.pyc
+keepupthepace/kivy-gettext-example
+>>>>>>> 2a88389eba53cf9aa2eccf1fb4787b4bd0b36336
 keepupthespaceenv/lib/python3.7/site-packages/PIL/__init__.py
 keepupthespaceenv/lib/python3.7/site-packages/PIL/__main__.py
 keepupthespaceenv/lib/python3.7/site-packages/PIL/_binary.py
