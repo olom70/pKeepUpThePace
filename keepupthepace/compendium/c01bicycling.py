@@ -6,7 +6,8 @@ import keepupthepace.compendium.abstractcompendium
 class Bicycling(keepupthepace.compendium.abstractcompendium.Compendium):
 
     def __init__(self):
-        
+        super().__init__()
+
         self.metValue  = {1003 : 14.0
          ,1004 : 16.0
          ,1008 : 8.5
@@ -25,6 +26,9 @@ class Bicycling(keepupthepace.compendium.abstractcompendium.Compendium):
          ,1065 : 8.5
          ,1066 : 9.0
          ,1070 : 5.0 }
+
+        # Unpacking with * works with any object that is iterable and, since dictionaries return their keys when iterated through, you can easily create a list by using it within a list literal.
+        self.ckeys = [*self.metValue] # another option : list(self.metValue.keys())
 
         self.metDescription  = {1003 : "bicycling, mountain, uphill, vigorous"
         ,1004 : "bicycling, mountain, competitive, racing"
@@ -74,5 +78,8 @@ class Bicycling(keepupthepace.compendium.abstractcompendium.Compendium):
 
 if __name__ == "__main__":
     b = Bicycling()
-    b.printValues()
-    print(b.getMetValue(1004))
+    #b.printValues()
+    #print(b.getMetValue(1004))
+    for l in b:
+        print(l)
+

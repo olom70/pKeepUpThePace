@@ -6,6 +6,8 @@ import keepupthepace.compendium.abstractcompendium
 class FishingHunting(keepupthepace.compendium.abstractcompendium.Compendium):
 
     def __init__(self):
+        super().__init__()
+
         self.metValue  = {4001 : 3.5
             ,4005 : 4.5
             ,4007 : 4.0
@@ -39,6 +41,8 @@ class FishingHunting(keepupthepace.compendium.abstractcompendium.Compendium):
             ,4140 : 2.3
             ,4145 : 2.5}
 
+        # Unpacking with * works with any object that is iterable and, since dictionaries return their keys when iterated through, you can easily create a list by using it within a list literal.
+        self.ckeys = [*self.metValue] # another option : list(self.metValue.keys())
 
         self.metDescription  = {4001 : "fishing, general"
             ,4005 : "fishing, crab fishing"
@@ -117,3 +121,5 @@ if __name__ == "__main__":
     b = FishingHunting()
     b.printValues()
     print(b.getMetValue(4145))
+    for l in b:
+        print(l)
