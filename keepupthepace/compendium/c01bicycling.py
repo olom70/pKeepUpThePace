@@ -82,5 +82,3 @@ if __name__ == "__main__":
     print(b.getMetValue(1004))
     for l in b:
         print(l)
-        
-
