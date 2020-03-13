@@ -1,0 +1,100 @@
+# Example for an internationalized Kivy app
+# Copyright (C) 2013 Mathieu Virbel
+# This file is distributed under the same license as the Kivy package.
+# Mathieu Virbel <mat@kivy.org>, 2013
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-12-22 16:38+0100\n"
+"PO-Revision-Date: 2013-08-01 15:36+0200\n"
+"Last-Translator: Mathieu Virbel <mat@kivy.org>\n"
+"Language-Team: Mathieu Virbel <mat@kivy.org>\n"
+"Language: English\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+#: main.py:108
+msgid "01-Bicycling"
+msgstr ""
+
+#: main.py:109
+msgid "02-Conditionning Exercises"
+msgstr ""
+
+#: main.py:110
+msgid "03-Dancing"
+msgstr ""
+
+#: main.py:111
+msgid "04-Fishing & Hunting"
+msgstr ""
+
+#: main.py:112
+msgid "05-Home Activity"
+msgstr ""
+
+#: main.py:113
+msgid "06-Home Repair"
+msgstr ""
+
+#: main.py:114
+msgid "07-Inactivity"
+msgstr ""
+
+#: main.py:115
+msgid "08-Lawn Garden"
+msgstr ""
+
+#: main.py:116
+msgid "09-Miscellaneous"
+msgstr ""
+
+#: main.py:117
+msgid "10-Music Playing"
+msgstr ""
+
+#: main.py:118
+msgid "11-Occupation"
+msgstr ""
+
+#: main.py:119
+msgid "12-Runing"
+msgstr ""
+
+#: main.py:120
+msgid "13-Self Care"
+msgstr ""
+
+#: main.py:121
+msgid "14-Sexual Activity"
+msgstr ""
+
+#: main.py:122
+msgid "15-Sports"
+msgstr ""
+
+#: main.py:123
+msgid "16-Transportation"
+msgstr ""
+
+#: main.py:124
+msgid "17-Walking"
+msgstr ""
+
+#: main.py:125
+msgid "18-Water Activities"
+msgstr ""
+
+#: main.py:126
+msgid "19-Winter Activities"
+msgstr ""
+
+#: main.py:127
+msgid "20-Religious Activities"
+msgstr ""
+
+#: main.py:128
+msgid "21-Volunteer Activities"
+msgstr ""
