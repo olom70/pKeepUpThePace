@@ -4,7 +4,20 @@
     name: 'metrics'
     text: 'Metrics'
     icon: 'relative-scale'
+    on_leave: app.doThingsBetweenScreen()
 
-    MDLabel:
-        text: 'Metrics'
-        halign: 'center'
+    BoxLayout:
+        orientation: 'vertical'
+        StackLayout:
+            MDLabel:
+                text: tr._('current profile')
+                size_hint_x: .4
+                size_hint_y: .1
+
+            MDTextField:
+                id: profile_name
+                text: str(app.myProfile.profileName)
+                on_text_validate: root.initProfileUpdate('profileName')
+                on_focus: root.on_focus(args[1], 'profileName')
+                size_hint_x: .4
+                size_hint_y: .1
