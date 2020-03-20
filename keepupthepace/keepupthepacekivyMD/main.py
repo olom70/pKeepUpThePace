@@ -4,6 +4,8 @@ import lang
 import os
 import sys
 from kivymd.app import MDApp
+from kivymd.uix.bottomnavigation import MDBottomNavigationItem, MDBottomNavigation
+from kivymd.uix.toolbar import MDToolbar
 from kivy.uix.screenmanager import ScreenManager, Screen, FadeTransition
 from kivy.uix.behaviors import FocusBehavior
 import kivy.properties as properties
@@ -36,6 +38,27 @@ import keepupthepace.compendium.c20religiousactivities as c20
 import keepupthepace.compendium.c21valunteeractivities as c21
 
 tr = lang.Lang("en")
+
+class Toolbar(MDToolbar):
+    pass
+
+class Week(MDBottomNavigationItem):
+    pass
+
+class ProfileUIX(MDBottomNavigationItem):
+    pass
+
+class Metrics(MDBottomNavigationItem):
+    pass
+
+class Compendium(MDBottomNavigationItem):
+    pass
+
+class SettingsUIX(MDBottomNavigationItem):
+    pass
+
+class MainBottomNavigation(MDBottomNavigation):
+    pass
 
 class KeepUpThePaceMD(BoxLayout):
     pass
