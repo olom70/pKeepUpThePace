@@ -1,4 +1,6 @@
 #:kivy 1.11.1
+#:import tr __main__.tr
+
 
 <Metrics>:
     name: 'metrics'
@@ -11,13 +13,17 @@
         StackLayout:
             MDLabel:
                 text: tr._('current profile')
-                size_hint_x: .4
+                size_hint_x: .45
                 size_hint_y: .1
+#                halign: "right"
+#                padding_x: 10
 
             MDTextField:
                 id: profile_name
                 text: str(app.myProfile.profileName)
                 on_text_validate: root.initProfileUpdate('profileName')
                 on_focus: root.on_focus(args[1], 'profileName')
-                size_hint_x: .4
+                size_hint_x: .45
                 size_hint_y: .1
+                helper_text: tr._("Let you describe the use of that profile")
+                helper_text_mode: "persistent"

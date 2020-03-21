@@ -264,7 +264,10 @@ class KeepUpThePaceMDApp(MDApp):
         persistence.saveprofiles()
 
     def build(self):
-        pass
+        self.theme_cls.primary_palette = "Blue"
+        self.theme_cls.primary_hue = "A700" 
+        self.theme_cls.accent_palette = 'Amber'
+        self.theme_cls.theme_style = "Light" # "Light" "Dark"
 
 if __name__ == "__main__":
 
