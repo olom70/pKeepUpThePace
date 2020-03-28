@@ -4,7 +4,7 @@ import uuid
 import math
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 import keepupthepace.profilem.enumandconst as enumandconst
-from keepupthepace.persistence.iterregistry import IterRegistry
+from  keepupthepace.persistence.iterregistry import IterRegistry
 
 class Profile(object):
     '''
