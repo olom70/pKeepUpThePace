@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-13 21:50+0100\n"
+"POT-Creation-Date: 2020-03-21 17:15+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,86 +17,94 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: main.py:108
+#: main.py:228
 msgid "01-Bicycling"
 msgstr ""
 
-#: main.py:109
+#: main.py:229
 msgid "02-Conditionning Exercises"
 msgstr ""
 
-#: main.py:110
+#: main.py:230
 msgid "03-Dancing"
 msgstr ""
 
-#: main.py:111
+#: main.py:231
 msgid "04-Fishing & Hunting"
 msgstr ""
 
-#: main.py:112
+#: main.py:232
 msgid "05-Home Activity"
 msgstr ""
 
-#: main.py:113
+#: main.py:233
 msgid "06-Home Repair"
 msgstr ""
 
-#: main.py:114
+#: main.py:234
 msgid "07-Inactivity"
 msgstr ""
 
-#: main.py:115
+#: main.py:235
 msgid "08-Lawn Garden"
 msgstr ""
 
-#: main.py:116
+#: main.py:236
 msgid "09-Miscellaneous"
 msgstr ""
 
-#: main.py:117
+#: main.py:237
 msgid "10-Music Playing"
 msgstr ""
 
-#: main.py:118
+#: main.py:238
 msgid "11-Occupation"
 msgstr ""
 
-#: main.py:119
+#: main.py:239
 msgid "12-Runing"
 msgstr ""
 
-#: main.py:120
+#: main.py:240
 msgid "13-Self Care"
 msgstr ""
 
-#: main.py:121
+#: main.py:241
 msgid "14-Sexual Activity"
 msgstr ""
 
-#: main.py:122
+#: main.py:242
 msgid "15-Sports"
 msgstr ""
 
-#: main.py:123
+#: main.py:243
 msgid "16-Transportation"
 msgstr ""
 
-#: main.py:124
+#: main.py:244
 msgid "17-Walking"
 msgstr ""
 
-#: main.py:125
+#: main.py:245
 msgid "18-Water Activities"
 msgstr ""
 
-#: main.py:126
+#: main.py:246
 msgid "19-Winter Activities"
 msgstr ""
 
-#: main.py:127
+#: main.py:247
 msgid "20-Religious Activities"
 msgstr ""
 
-#: main.py:128
+#: main.py:248
 msgid "21-Volunteer Activities"
+msgstr ""
+
+#: metrics.kv:15
+msgid "current profile"
+msgstr ""
+
+#: metrics.kv:28
+msgid "Let you describe the use of that profile"
 msgstr ""
