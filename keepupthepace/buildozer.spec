@@ -4,10 +4,10 @@
 title = KeepUpThePace
 
 # (str) Package name
-package.name = keepupthepace
+package.name = org.hopto.olom70noscreen
 
 # (str) Package domain (needed for android/ios packaging)
-package.domain = org.hotpo.olom70noscreen
+package.domain = org.hopto
 
 # (str) Source code where the main.py live
 source.dir = .
@@ -91,7 +91,7 @@ fullscreen = 0
 #android.api = 27
 
 # (int) Minimum API your APK will support.
-#android.minapi = 23
+#android.minapi = 21
 
 # (int) Android SDK version to use
 #android.sdk = 20
@@ -100,7 +100,7 @@ fullscreen = 0
 #android.ndk = 17c
 
 # (int) Android NDK API to use. This is the minimum API your app will support, it should usually match android.minapi.
-#android.ndk_api = 23
+#android.ndk_api = 21
 
 # (bool) Use --private data storage (True) or --dir public storage (False)
 #android.private_storage = True
